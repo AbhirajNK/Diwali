@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>Happy Diwali — Festival of Lights Celebration</title>
   <meta name="description" content="Personalized Diwali blessings, fireworks, and crackers for you and your family.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@800;900&family=Montserrat:wght@500;600;700;800;900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Montserrat:wght@500;600;700;800;900&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       margin: 0;
@@ -23,6 +23,7 @@
       font-family: 'Montserrat', sans-serif;
       color: #fff;
       user-select: none;
+      -webkit-font-smoothing: antialiased;
     }
 
     #canvas {
@@ -38,33 +39,34 @@
     /* Sound Pill */
     #soundPill {
       position: fixed;
-      top: 18px;
-      right: 18px;
+      top: clamp(12px, 2.5vw, 20px);
+      right: clamp(12px, 2.5vw, 20px);
       z-index: 50;
-      background: rgba(14, 8, 22, 0.85);
-      border: 1px solid rgba(255, 215, 120, 0.45);
+      background: rgba(14, 8, 24, 0.88);
+      border: 1px solid rgba(255, 215, 120, 0.5);
       color: #ffd777;
-      padding: 8px 18px;
+      padding: 7px 16px;
       border-radius: 40px;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
+      font-size: clamp(11px, 2.4vw, 13px);
+      font-weight: 700;
+      letter-spacing: 1.2px;
       cursor: pointer;
       backdrop-filter: blur(14px);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 180, 0, 0.2);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.85), 0 0 25px rgba(255, 180, 0, 0.25);
       transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
     }
     #soundPill:hover {
-      background: rgba(35, 15, 52, 0.95);
+      background: rgba(36, 16, 54, 0.96);
       border-color: #ffd700;
-      box-shadow: 0 0 35px rgba(255, 215, 0, 0.4);
+      box-shadow: 0 0 35px rgba(255, 215, 0, 0.45);
       transform: translateY(-2px);
     }
 
-    /* Landing Card — Keeps Surprise Secret! */
+    /* Landing Card Layer - 100% Scrollable & Responsive on any screen */
     #heroLayer {
       position: fixed;
       inset: 0;
@@ -73,125 +75,133 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: clamp(12px, 3vh, 24px) clamp(10px, 3vw, 20px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
       pointer-events: none;
-      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
     }
     #heroLayer.vanished {
       opacity: 0;
-      transform: scale(1.08);
+      transform: scale(1.06);
       pointer-events: none;
+      visibility: hidden;
     }
 
     .luxury-card {
       pointer-events: auto;
-      max-width: 520px;
-      width: 90%;
-      padding: 44px 32px;
-      background: radial-gradient(circle at 50% 0%, rgba(45, 15, 65, 0.65) 0%, rgba(8, 2, 14, 0.92) 100%);
-      border: 1px solid rgba(255, 215, 130, 0.38);
-      border-radius: 28px;
+      margin: auto;
+      width: 100%;
+      max-width: 500px;
+      padding: clamp(26px, 5.5vh, 44px) clamp(18px, 4.5vw, 34px);
+      background: radial-gradient(circle at 50% 0%, rgba(48, 16, 70, 0.72) 0%, rgba(8, 2, 16, 0.94) 100%);
+      border: 1px solid rgba(255, 215, 130, 0.42);
+      border-radius: clamp(20px, 4vw, 28px);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       box-shadow: 0 25px 80px rgba(0, 0, 0, 0.95),
-                  0 0 90px rgba(255, 140, 0, 0.2),
-                  inset 0 1px 0 rgba(255, 255, 255, 0.2);
+                  0 0 90px rgba(255, 140, 0, 0.22),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.25);
       text-align: center;
     }
 
     .sanskrit-verse {
       font-family: 'Cinzel', serif;
-      font-size: 13px;
-      color: rgba(255, 215, 140, 0.85);
-      letter-spacing: 5px;
+      font-size: clamp(11px, 2.5vw, 13.5px);
+      color: rgba(255, 215, 140, 0.9);
+      letter-spacing: clamp(3px, 1vw, 5px);
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .card-title {
       font-family: 'Cinzel', serif;
-      font-size: clamp(2.3rem, 5.5vw, 4rem);
+      font-size: clamp(2.1rem, 7vw, 3.8rem);
       font-weight: 900;
-      letter-spacing: 4px;
-      line-height: 1.15;
-      margin-bottom: 4px;
+      letter-spacing: clamp(2px, 1vw, 4px);
+      line-height: 1.12;
+      margin-bottom: 6px;
       background: linear-gradient(135deg, #ffffff 0%, #fff2a3 25%, #ffd700 50%, #ff8c00 80%, #ff4500 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 28px rgba(255, 180, 0, 0.5));
+      filter: drop-shadow(0 0 24px rgba(255, 180, 0, 0.5));
     }
 
     .card-subtitle {
       font-family: 'Playfair Display', serif;
       font-style: italic;
-      font-size: clamp(1.15rem, 2.5vw, 1.55rem);
+      font-size: clamp(1.05rem, 3.2vw, 1.45rem);
       color: #ffca80;
-      margin-bottom: 20px;
-      text-shadow: 0 0 18px rgba(255, 140, 0, 0.5);
+      margin-bottom: 16px;
+      text-shadow: 0 0 16px rgba(255, 140, 0, 0.45);
     }
 
     .card-desc {
-      font-size: 13.5px;
-      line-height: 1.6;
-      color: rgba(255, 235, 210, 0.85);
-      max-width: 420px;
-      margin: 0 auto 28px;
-      font-weight: 300;
+      font-size: clamp(12.5px, 2.8vw, 14px);
+      line-height: 1.55;
+      color: rgba(255, 235, 210, 0.88);
+      max-width: 410px;
+      margin: 0 auto clamp(18px, 3vh, 26px);
+      font-weight: 400;
     }
 
     .input-box {
       position: relative;
       max-width: 380px;
-      margin: 0 auto 20px;
+      margin: 0 auto clamp(16px, 2.5vh, 22px);
     }
     .name-input {
       width: 100%;
-      padding: 16px 24px;
-      background: rgba(12, 4, 22, 0.75);
-      border: 1.5px solid rgba(255, 215, 120, 0.4);
+      padding: clamp(13px, 2.5vh, 16px) clamp(16px, 4vw, 24px);
+      background: rgba(12, 4, 22, 0.8);
+      border: 1.5px solid rgba(255, 215, 120, 0.45);
       border-radius: 50px;
       outline: none;
       color: #fff9e6;
-      font-size: 16px;
+      font-size: clamp(14px, 3.2vw, 16px);
       font-family: 'Montserrat', sans-serif;
       font-weight: 600;
       text-align: center;
       letter-spacing: 2px;
-      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.75), 0 0 25px rgba(255, 160, 0, 0.15);
+      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 160, 0, 0.15);
       transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     .name-input::placeholder {
-      color: rgba(255, 215, 150, 0.4);
+      color: rgba(255, 215, 150, 0.45);
       font-weight: 400;
       letter-spacing: 1px;
     }
     .name-input:focus {
       border-color: #ffd700;
-      background: rgba(24, 8, 38, 0.9);
-      box-shadow: 0 0 35px rgba(255, 200, 0, 0.45), inset 0 2px 10px rgba(0, 0, 0, 0.85);
+      background: rgba(24, 8, 38, 0.95);
+      box-shadow: 0 0 35px rgba(255, 200, 0, 0.5), inset 0 2px 10px rgba(0, 0, 0, 0.9);
       transform: scale(1.02);
     }
 
     .ignite-btn {
       position: relative;
-      padding: 16px 44px;
+      width: 100%;
+      max-width: 330px;
+      padding: clamp(14px, 2.6vh, 17px) clamp(24px, 4vw, 42px);
       border: none;
       border-radius: 50px;
       font-family: 'Cinzel', serif;
       font-weight: 900;
-      font-size: 14px;
-      letter-spacing: 2.5px;
+      font-size: clamp(12.5px, 2.8vw, 14.5px);
+      letter-spacing: 2.2px;
       color: #120300;
       cursor: pointer;
       background: linear-gradient(135deg, #fff7c2 0%, #ffd700 35%, #ff9900 70%, #ff3b00 100%);
       box-shadow: 0 10px 35px rgba(255, 90, 0, 0.55),
                   0 0 60px rgba(255, 180, 0, 0.4),
-                  inset 0 1px 0 rgba(255, 255, 255, 0.8);
+                  inset 0 1px 0 rgba(255, 255, 255, 0.85);
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       overflow: hidden;
     }
     .ignite-btn:hover {
-      transform: translateY(-2px) scale(1.04);
-      box-shadow: 0 16px 45px rgba(255, 90, 0, 0.7), 0 0 85px rgba(255, 215, 0, 0.6);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 16px 45px rgba(255, 90, 0, 0.72), 0 0 85px rgba(255, 215, 0, 0.65);
     }
 
     .error-shake {
@@ -200,58 +210,98 @@
       box-shadow: 0 0 30px rgba(255, 50, 70, 0.6) !important;
     }
     @keyframes shakeInput {
-      10%, 90% { transform: translate3d(-2px, 0, 0); }
-      20%, 80% { transform: translate3d(4px, 0, 0); }
+      10%, 90% { transform: translate3d(-3px, 0, 0); }
+      20%, 80% { transform: translate3d(5px, 0, 0); }
       30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
       40%, 60% { transform: translate3d(6px, 0, 0); }
     }
 
-    /* Celebration Controls Bar */
+    /* Celebration Controls Bar & Heartfelt Google Wishes Box */
     #celebrateBar {
       position: fixed;
-      bottom: 25px;
+      bottom: clamp(14px, 3vh, 28px);
       left: 50%;
       transform: translateX(-50%);
       z-index: 50;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: clamp(8px, 1.6vh, 12px);
+      width: clamp(290px, 92%, 620px);
       opacity: 0;
       pointer-events: none;
-      transition: all 0.5s ease;
+      transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     #celebrateBar.active {
       opacity: 1;
       pointer-events: auto;
     }
+
+    .family-wish-card {
+      width: 100%;
+      background: rgba(14, 6, 24, 0.86);
+      border: 1px solid rgba(255, 215, 120, 0.48);
+      border-radius: clamp(16px, 3vw, 22px);
+      padding: clamp(12px, 2.2vh, 16px) clamp(16px, 4vw, 24px);
+      text-align: center;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.85), 0 0 35px rgba(255, 160, 0, 0.28);
+    }
+    .family-wish-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(0.92rem, 2.7vw, 1.18rem);
+      line-height: 1.48;
+      color: #ffe6a3;
+      text-shadow: 0 0 15px rgba(255, 180, 0, 0.45);
+      margin-bottom: 5px;
+    }
+    .family-wish-sub {
+      font-size: clamp(10px, 2.2vw, 11.5px);
+      letter-spacing: clamp(1.8px, 0.5vw, 2.6px);
+      color: rgba(255, 220, 160, 0.85);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .btn-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
     .action-pill {
-      padding: 12px 32px;
-      background: rgba(16, 8, 24, 0.88);
-      border: 1px solid rgba(255, 215, 100, 0.55);
+      padding: clamp(8px, 1.8vh, 11px) clamp(18px, 3.5vw, 28px);
+      background: rgba(16, 8, 26, 0.92);
+      border: 1px solid rgba(255, 215, 100, 0.58);
       border-radius: 50px;
       color: #ffd777;
       font-family: 'Cinzel', serif;
-      font-size: 13px;
+      font-size: clamp(11.5px, 2.4vw, 13px);
       font-weight: 700;
-      letter-spacing: 2px;
+      letter-spacing: 1.5px;
       cursor: pointer;
       backdrop-filter: blur(14px);
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 170, 0, 0.3);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.85), 0 0 30px rgba(255, 170, 0, 0.28);
       transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     .action-pill:hover {
-      background: rgba(35, 15, 50, 0.98);
+      background: rgba(38, 16, 56, 0.98);
       border-color: #ffd700;
       transform: translateY(-2px) scale(1.03);
       box-shadow: 0 0 45px rgba(255, 215, 0, 0.55);
     }
-    .hint-label {
-      font-size: 12px;
-      letter-spacing: 2px;
-      color: rgba(255, 220, 160, 0.85);
-      text-transform: uppercase;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
+    .action-pill.secondary {
+      border-color: rgba(0, 240, 255, 0.5);
+      color: #99f3ff;
+    }
+    .action-pill.secondary:hover {
+      border-color: #00f0ff;
+      box-shadow: 0 0 45px rgba(0, 240, 255, 0.55);
     }
   </style>
 </head>
@@ -269,7 +319,7 @@
       <div class="sanskrit-verse">॥ शुभम् करोति कल्याणम् ॥</div>
       <h1 class="card-title">DEEPAVALI</h1>
       <div class="card-subtitle">A Special Festival of Lights Celebration</div>
-      <p class="card-desc">Enter your name to ignite the grand ceremonial rocket and unlock your personal Diwali wishes and celestial fireworks celebration.</p>
+      <p class="card-desc">Enter your name to ignite the grand ceremonial rocket and unlock your personalized Diwali wishes and fireworks spectacle.</p>
       
       <div class="input-box">
         <input 
@@ -277,7 +327,7 @@
           id="nameField" 
           class="name-input" 
           placeholder="ENTER YOUR NAME" 
-          maxlength="20" 
+          maxlength="26" 
           autocomplete="off" 
           spellcheck="false"
         >
@@ -288,8 +338,14 @@
   </div>
 
   <div id="celebrateBar">
-    <button id="relaunchBtn" class="action-pill">↺ CELEBRATE ANOTHER NAME</button>
-    <div class="hint-label">✨ Tap or drag in the sky to launch fireworks &amp; draw sparklers ✨</div>
+    <div class="family-wish-card">
+      <div class="family-wish-text" id="familyWishText">"Wishing our wonderful family a Diwali filled with warmth, loud laughter, and countless blessings. May our home always glow with love and joy!"</div>
+      <div class="family-wish-sub">✨ SHUBH DEEPAWALI • FESTIVAL OF LIGHTS ✨</div>
+    </div>
+    <div class="btn-row">
+      <button id="nextWishBtn" class="action-pill secondary">✨ NEXT WISH QUOTE</button>
+      <button id="relaunchBtn" class="action-pill">↺ CELEBRATE ANOTHER NAME</button>
+    </div>
   </div>
 
   <script>
@@ -321,15 +377,15 @@
       return this.enabled;
     }
 
-    playRocketLaunch(duration = 1.1) {
+    playRocketLaunch(duration = 0.95) {
       if (!this.enabled || !this.ctx) return;
       const now = this.ctx.currentTime;
 
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(340, now);
-      osc.frequency.exponentialRampToValueAtTime(1750, now + duration * 0.95);
+      osc.frequency.setValueAtTime(360, now);
+      osc.frequency.exponentialRampToValueAtTime(1850, now + duration * 0.95);
 
       gain.gain.setValueAtTime(0.001, now);
       gain.gain.linearRampToValueAtTime(0.12, now + duration * 0.35);
@@ -345,7 +401,7 @@
 
       osc.start(now);
       osc.stop(now + duration);
-      this.playHiss(duration, 0.13);
+      this.playHiss(duration, 0.12);
     }
 
     playHiss(duration, vol = 0.1) {
@@ -392,7 +448,7 @@
       osc.start(now);
       osc.stop(now + 1.2);
 
-      const bufferSize = Math.floor(this.ctx.sampleRate * 1.4);
+      const bufferSize = Math.floor(this.ctx.sampleRate * 1.3);
       const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
       const data = buffer.getChannelData(0);
       for (let i = 0; i < bufferSize; i++) {
@@ -404,11 +460,11 @@
       const filter = this.ctx.createBiquadFilter();
       filter.type = 'lowpass';
       filter.frequency.setValueAtTime(1100, now);
-      filter.frequency.linearRampToValueAtTime(140, now + 1.4);
+      filter.frequency.linearRampToValueAtTime(140, now + 1.3);
 
       const noiseGain = this.ctx.createGain();
       noiseGain.gain.setValueAtTime(0.65 * intensity, now);
-      noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 1.4);
+      noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 1.3);
 
       noise.connect(filter);
       filter.connect(noiseGain);
@@ -418,7 +474,7 @@
 
     playCrackle() {
       if (!this.enabled || !this.ctx) return;
-      const count = 4 + Math.floor(Math.random() * 5);
+      const count = 4 + Math.floor(Math.random() * 4);
       for (let i = 0; i < count; i++) {
         setTimeout(() => {
           if (!this.ctx || !this.enabled) return;
@@ -433,7 +489,7 @@
           gain.connect(this.ctx.destination);
           osc.start(now);
           osc.stop(now + 0.03);
-        }, Math.random() * 220);
+        }, Math.random() * 200);
       }
     }
   }
@@ -462,9 +518,12 @@
   function resize() {
     W = canvas.width = window.innerWidth;
     H = canvas.height = window.innerHeight;
+    initGroundCrackers();
+    initDiyas();
+    if (isCelebrating && lastCelebrationName) {
+      skyWriting.trigger(lastCelebrationName);
+    }
   }
-  resize();
-  window.addEventListener('resize', resize);
 
   class NightSky {
     constructor() {
@@ -499,12 +558,8 @@
 
 
   /* ==========================================================================
-     3. HIGH-READABILITY SPARKLER WISHES FOR THEM & THEIR FAMILY!
-     Displays:
-       Line 1: ✨ HAPPY DIWALI ✨
-       Line 2: <NAME> & FAMILY
-       Line 3: 🪔 JOY, PEACE & PROSPERITY 🪔
-     Smooth, perfectly readable sparkler firework lights!
+     3. 100% RESPONSIVE VIBRANT SPARKLER LIGHT CALLIGRAPHY
+     (Vibrant Electric Cyan, Shimmering Saffron Gold, Ruby Rose — NEVER plain white!)
      ========================================================================== */
   class SkyFireworkLightLettering {
     constructor() {
@@ -523,60 +578,94 @@
       offCanvas.width = W;
       offCanvas.height = H;
 
-      const isMobile = W < 600;
-      let cleanName = name.toUpperCase().trim();
-      
-      // Format dedication: e.g. "NK ABHIRAJ & FAMILY"
-      let familyText = cleanName.includes('FAMILY') ? cleanName : `${cleanName} & FAMILY`;
-      const nameLen = Math.max(1, familyText.length);
+      let raw = name.toUpperCase().trim();
+      // Remove accidental duplicate '& FAMILY' or 'AND FAMILY'
+      let cleanName = raw.replace(/\s*(?:&|AND)\s*FAMILY\b/i, '').trim();
+      if (!cleanName) cleanName = 'YOU & YOUR LOVED ONES';
 
-      // Auto-scale font sizes
-      const maxTextW = Math.min(W * 0.88, 940);
-      const targetSize = Math.floor(Math.min(
-        isMobile ? 38 : 64,
-        maxTextW / (nameLen * 0.66)
-      ));
+      const isNarrow = W < 640;
+      const maxAllowedW = Math.min(W * 0.88, 860);
 
-      const line1Size = Math.floor(Math.min(isMobile ? 22 : 36, targetSize * 0.7));
-      const line2Size = Math.max(isMobile ? 20 : 30, targetSize);
-      const line3Size = Math.floor(Math.min(isMobile ? 15 : 24, targetSize * 0.45));
+      // Auto-fit font size helper to prevent any clipping on any mobile screen
+      function fitSize(text, maxPt, minPt, letterSpacingVal) {
+        if ('letterSpacing' in offCtx) offCtx.letterSpacing = letterSpacingVal;
+        let size = maxPt;
+        while (size > minPt) {
+          offCtx.font = `800 ${size}px 'Montserrat', sans-serif`;
+          const metrics = offCtx.measureText(text);
+          if (metrics.width <= maxAllowedW) return size;
+          size--;
+        }
+        return minPt;
+      }
 
-      const line1Y = Math.floor(H * 0.20);
-      const line2Y = Math.floor(H * 0.32);
-      const line3Y = Math.floor(H * 0.42);
+      // Structure lines according to screen width
+      let lines = [];
+      if (isNarrow) {
+        // Mobile Layout: 4 spacious, crystal-clear lines that NEVER cut off
+        const s1 = fitSize('✨ HAPPY DIWALI ✨', Math.min(26, H * 0.038), 14, '3px');
+        const s2 = fitSize(cleanName, Math.min(36, H * 0.052), 16, '4px');
+        const s3 = fitSize('& FAMILY', Math.min(28, H * 0.042), 15, '4px');
+        const s4 = fitSize('🪔 JOY & PROSPERITY 🪔', Math.min(18, H * 0.028), 12, '2px');
 
-      // Render line 1: ✨ HAPPY DIWALI ✨
+        lines = [
+          { text: '✨ HAPPY DIWALI ✨', y: H * 0.15, size: s1, spacing: '3px', palette: 'gold' },
+          { text: cleanName, y: H * 0.25, size: s2, spacing: '4px', palette: 'cyan' },
+          { text: '& FAMILY', y: H * 0.34, size: s3, spacing: '4px', palette: 'rose' },
+          { text: '🪔 JOY & PROSPERITY 🪔', y: H * 0.42, size: s4, spacing: '2px', palette: 'amber' }
+        ];
+      } else {
+        // Desktop / Tablet Layout: 3 wide, grand lines
+        const familyText = `${cleanName} & FAMILY`;
+        const s1 = fitSize('✨ HAPPY DIWALI ✨', Math.min(38, H * 0.05), 18, '5px');
+        const s2 = fitSize(familyText, Math.min(54, H * 0.075), 22, '6px');
+        const s3 = fitSize('🪔 JOY, PEACE & PROSPERITY 🪔', Math.min(24, H * 0.034), 14, '3px');
+
+        lines = [
+          { text: '✨ HAPPY DIWALI ✨', y: H * 0.17, size: s1, spacing: '5px', palette: 'gold' },
+          { text: familyText, y: H * 0.28, size: s2, spacing: '6px', palette: 'cyan' },
+          { text: '🪔 JOY, PEACE & PROSPERITY 🪔', y: H * 0.38, size: s3, spacing: '3px', palette: 'amber' }
+        ];
+      }
+
       offCtx.textAlign = 'center';
       offCtx.textBaseline = 'middle';
-      if ('letterSpacing' in offCtx) offCtx.letterSpacing = isMobile ? '3px' : '6px';
-      offCtx.font = `800 ${line1Size}px 'Montserrat', sans-serif`;
       offCtx.fillStyle = '#ffffff';
-      offCtx.fillText('✨ HAPPY DIWALI ✨', W / 2, line1Y);
 
-      // Render line 2: <NAME> & FAMILY
-      if ('letterSpacing' in offCtx) offCtx.letterSpacing = isMobile ? '4px' : '7px';
-      offCtx.font = `800 ${line2Size}px 'Montserrat', sans-serif`;
-      offCtx.fillText(familyText, W / 2, line2Y);
-
-      // Render line 3: 🪔 JOY, PEACE & PROSPERITY 🪔
-      if ('letterSpacing' in offCtx) offCtx.letterSpacing = isMobile ? '2px' : '5px';
-      offCtx.font = `700 ${line3Size}px 'Montserrat', sans-serif`;
-      offCtx.fillText('🪔 JOY, PEACE & PROSPERITY 🪔', W / 2, line3Y);
+      // Draw lines onto off-canvas
+      for (const line of lines) {
+        if ('letterSpacing' in offCtx) offCtx.letterSpacing = line.spacing;
+        offCtx.font = `800 ${line.size}px 'Montserrat', sans-serif`;
+        offCtx.fillText(line.text, W / 2, line.y);
+      }
 
       const imgData = offCtx.getImageData(0, 0, W, H).data;
 
-      // Smooth step sampling: 5px for continuous, elegant letter curves
-      const step = isMobile ? 5 : 5;
+      // Color Palettes (Vibrant Festive Sparkler Lights — NOT plain white!)
+      const palettes = {
+        gold: ['#ffd700', '#ffcc00', '#ffb300', '#fff066'],
+        cyan: ['#00f0ff', '#00d5ff', '#33e6ff', '#00c3ff', '#ffd700'],
+        rose: ['#ff2a85', '#ff599c', '#ff77a8', '#ffd700'],
+        amber: ['#ff9900', '#ffb700', '#ffaa00', '#ff5500']
+      };
+
+      const step = isNarrow ? 4 : 4;
       for (let y = 0; y < H; y += step) {
         for (let x = 0; x < W; x += step) {
           const idx = (y * W + x) * 4;
-          if (imgData[idx] > 140) {
-            let col = '#ffd700'; // Gold for Happy Diwali
-            if (y > (line1Y + line2Y) / 2 && y <= (line2Y + line3Y) / 2) {
-              col = '#ffffff'; // White-hot diamond for Name & Family
-            } else if (y > (line2Y + line3Y) / 2) {
-              col = '#ffca80'; // Warm peach/gold for blessings
+          if (imgData[idx] > 130) {
+            // Determine which line palette this belongs to
+            let assignedPalette = palettes.gold;
+            let closestDist = Infinity;
+            for (const line of lines) {
+              const d = Math.abs(y - line.y);
+              if (d < closestDist) {
+                closestDist = d;
+                assignedPalette = palettes[line.palette] || palettes.gold;
+              }
             }
+
+            const col = assignedPalette[Math.floor(Math.random() * assignedPalette.length)];
 
             this.burners.push({
               x: x,
@@ -600,19 +689,19 @@
     updateAndDraw(now) {
       if (!this.active) return;
 
-      // Delicate dripping embers
-      if (this.sparks.length < 160) {
+      // Colorful dripping embers from letters
+      if (this.sparks.length < 150) {
         for (let i = 0; i < 3; i++) {
           if (this.burners.length === 0) break;
           const b = this.burners[Math.floor(Math.random() * this.burners.length)];
           const angle = Math.random() * Math.PI * 2;
-          const speed = Math.random() * 2.4 + 0.5;
+          const speed = Math.random() * 2.2 + 0.4;
           this.sparks.push({
             x: b.x,
             y: b.y,
             vx: Math.cos(angle) * speed,
             vy: Math.sin(angle) * speed + 0.35,
-            color: Math.random() > 0.3 ? '#ffd700' : '#ffffff',
+            color: b.baseColor,
             size: Math.random() * 1.5 + 0.8,
             alpha: 1.0,
             decay: 0.024 + Math.random() * 0.02
@@ -622,7 +711,7 @@
 
       if (Math.random() < 0.12) sound.playCrackle();
 
-      // 1. Draw Sparks
+      // 1. Draw Falling Sparks
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
       this.sparks = this.sparks.filter(s => s.alpha > 0.01);
@@ -632,7 +721,7 @@
         s.y += s.vy;
         s.vx *= 0.96;
         s.vy *= 0.96;
-        s.vy += 0.09;
+        s.vy += 0.085;
         s.alpha -= s.decay;
 
         ctx.fillStyle = s.color;
@@ -648,22 +737,25 @@
         b.phase += b.speed;
         const shine = 0.5 + 0.5 * Math.sin(b.phase);
 
+        // Radiant Saturated Halo
         ctx.fillStyle = b.baseColor;
-        ctx.globalAlpha = 0.65 + 0.35 * shine;
+        ctx.globalAlpha = 0.75 + 0.25 * shine;
         ctx.beginPath();
-        ctx.arc(b.x, b.y, 2.0 + shine * 1.2, 0, Math.PI * 2);
+        ctx.arc(b.x, b.y, 2.0 + shine * 1.1, 0, Math.PI * 2);
         ctx.fill();
 
+        // Hot Incandescent Spark Core
         ctx.fillStyle = '#ffffff';
         ctx.globalAlpha = 0.85 + 0.15 * shine;
         ctx.beginPath();
-        ctx.arc(b.x, b.y, 1.1, 0, Math.PI * 2);
+        ctx.arc(b.x, b.y, 0.9, 0, Math.PI * 2);
         ctx.fill();
 
+        // Sparkling Diamond Flare
         if (shine > 0.84) {
-          ctx.strokeStyle = '#ffffff';
+          ctx.strokeStyle = b.baseColor;
           ctx.lineWidth = 0.85;
-          ctx.globalAlpha = (shine - 0.84) * 3.5;
+          ctx.globalAlpha = (shine - 0.84) * 4.0;
           ctx.beginPath();
           ctx.moveTo(b.x - b.spikeLen, b.y);
           ctx.lineTo(b.x + b.spikeLen, b.y);
@@ -680,7 +772,7 @@
 
 
   /* ==========================================================================
-     4. ANARS & CHAKRAS
+     4. ANARS (FLOWERPOTS) & SPINNING GROUND CHAKRAS
      ========================================================================== */
   let sparks = [];
   let smokePuffs = [];
@@ -850,14 +942,14 @@
   function initGroundCrackers() {
     anars = [];
     chakras = [];
-    const scale = Math.min(1.1, Math.max(0.7, W / 1000));
-    anars.push(new AnarFountain(W * 0.12, H - 26, scale));
-    anars.push(new AnarFountain(W * 0.88, H - 26, scale));
-    chakras.push(new GroundChakra(W * 0.24, H - 24, scale));
-    chakras.push(new GroundChakra(W * 0.76, H - 24, scale));
+    const scale = Math.min(1.05, Math.max(0.65, W / 1000));
+    const anarOffset = Math.min(65, W * 0.10);
+    const chakraOffset = Math.min(140, W * 0.25);
+    anars.push(new AnarFountain(anarOffset, H - 24, scale));
+    anars.push(new AnarFountain(W - anarOffset, H - 24, scale));
+    chakras.push(new GroundChakra(chakraOffset, H - 22, scale));
+    chakras.push(new GroundChakra(W - chakraOffset, H - 22, scale));
   }
-  initGroundCrackers();
-  window.addEventListener('resize', initGroundCrackers);
 
 
   /* ==========================================================================
@@ -967,21 +1059,19 @@
   let diyas = [];
   function initDiyas() {
     diyas = [];
-    const count = Math.max(5, Math.floor(W / 140));
+    const count = Math.max(3, Math.min(8, Math.floor(W / 120)));
     const step = W / (count + 1);
-    const scale = Math.min(1.05, Math.max(0.7, W / 1000));
+    const scale = Math.min(1.0, Math.max(0.65, W / 1000));
     for (let i = 1; i <= count; i++) {
       diyas.push(new PhotorealisticDiya(i * step, H - 22, scale));
     }
-    diyas.push(new PhotorealisticDiya(36, H - 24, 0.85));
-    diyas.push(new PhotorealisticDiya(W - 36, H - 24, 0.85));
+    diyas.push(new PhotorealisticDiya(28, H - 22, scale * 0.9));
+    diyas.push(new PhotorealisticDiya(W - 28, H - 22, scale * 0.9));
   }
-  initDiyas();
-  window.addEventListener('resize', initDiyas);
 
 
   /* ==========================================================================
-     6. AERIAL ROCKETS & MULTI-BREAK SHELL EXPLOSIONS
+     6. AERIAL DIRECTIONAL ROCKETS & MULTI-BREAK SHELL EXPLOSIONS
      ========================================================================== */
   class DirectionalRocket {
     constructor(startX, startY, targetX, targetY, onDetonate, speedMultiplier = 1.0) {
@@ -995,9 +1085,9 @@
       const dy = targetY - startY;
       const dist = Math.hypot(dx, dy);
 
-      this.vx = (dx / dist) * (18 + Math.random() * 5) * speedMultiplier;
-      this.vy = (dy / dist) * (24 + Math.random() * 6) * speedMultiplier;
-      this.thrust = 0.38 * speedMultiplier;
+      this.vx = (dx / dist) * (20 + Math.random() * 5) * speedMultiplier;
+      this.vy = (dy / dist) * (26 + Math.random() * 6) * speedMultiplier;
+      this.thrust = 0.42 * speedMultiplier;
       this.dead = false;
       this.trail = [];
       this.curve = (Math.random() - 0.5) * 0.25;
@@ -1124,7 +1214,7 @@
 
   let bursts = [];
 
-  function createRealisticExplosion(x, y, palette, count = 160, type = 'chrysanthemum') {
+  function createRealisticExplosion(x, y, palette, count = 150, type = 'chrysanthemum') {
     sound.playExplosion(1.0);
     sound.playCrackle();
 
@@ -1138,32 +1228,56 @@
       bursts.push(new FireworkBurstParticle(x, y, vx, vy, col, type));
     }
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 5; i++) {
       addSmoke(x + (Math.random() - 0.5) * 20, y + (Math.random() - 0.5) * 20, (Math.random() - 0.5) * 1.5, (Math.random() - 0.5) * 1.5, 12 + Math.random() * 10);
     }
   }
 
 
   /* ==========================================================================
-     7. RAPID MULTI-ROCKETS ON LANDING PAGE
+     7. TOP AUTHENTIC DIWALI WISHES & QUOTES (CURATED FROM GOOGLE)
+     ========================================================================== */
+  const GOOGLE_FAMILY_WISHES = [
+    `"Wishing our wonderful family a Diwali filled with warmth, loud laughter, and countless blessings. May our home always glow with love and joy!"`,
+    `"May Goddess Lakshmi bless our home with abundance, Lord Ganesha remove every obstacle, and our bond grow stronger with each passing day. Happy Diwali!"`,
+    `"Another Diwali, another cherished reason to celebrate this family. Wishing you all vibrant health, boundless happiness, and peaceful days!"`,
+    `"May the divine brightness of diyas guide your footsteps toward boundless success, radiant joy, and glorious new beginnings. Shubh Deepawali!"`,
+    `"Diyas to light your path, sweets to sweeten your days, and the warmth of family to fill your heart. Wishing you all a truly blessed Diwali!"`,
+    `"Diwali reminds us that light will forever conquer darkness. May your world light up with love, triumph, and divine grace. Happy Diwali to the entire family!"`
+  ];
+  let currentWishIndex = 0;
+
+
+  /* ==========================================================================
+     8. RAPID MULTI-ROCKETS ON LANDING PAGE
      CELEBRATION PAGE: GRAND CONTINUOUS SKY FIREWORKS SHOW!
      ========================================================================== */
   let activeRockets = [];
   let isCelebrating = false;
+  let lastCelebrationName = '';
   let celebrationSkyInterval = null;
 
   const heroLayer = document.getElementById('heroLayer');
   const nameField = document.getElementById('nameField');
   const igniteBtn = document.getElementById('igniteBtn');
   const relaunchBtn = document.getElementById('relaunchBtn');
+  const nextWishBtn = document.getElementById('nextWishBtn');
   const celebrateBar = document.getElementById('celebrateBar');
+  const familyWishText = document.getElementById('familyWishText');
 
+  function cycleWish() {
+    currentWishIndex = (currentWishIndex + 1) % GOOGLE_FAMILY_WISHES.length;
+    familyWishText.textContent = GOOGLE_FAMILY_WISHES[currentWishIndex];
+  }
+  nextWishBtn.addEventListener('click', cycleWish);
+
+  // Fast background rockets for landing page
   function launchRandomLandingRocket() {
     if (!isCelebrating && activeRockets.length < 4) {
       const startX = Math.random() * W;
       const targetX = startX + (Math.random() - 0.5) * W * 0.45;
       const targetY = H * 0.10 + Math.random() * H * 0.38;
-      sound.playRocketLaunch(1.0);
+      sound.playRocketLaunch(0.9);
       activeRockets.push(new DirectionalRocket(startX, H, targetX, targetY, (ex, ey) => {
         const pal = [
           ['#ffd700', '#ffffff', '#ff8800'],
@@ -1172,13 +1286,13 @@
           ['#00ff77', '#ffffff', '#22ffcc']
         ][Math.floor(Math.random() * 4)];
         createRealisticExplosion(ex, ey, pal, 110, Math.random() > 0.5 ? 'willow' : 'chrysanthemum');
-      }, 1.25));
+      }, 1.35));
     }
   }
 
-  setTimeout(launchRandomLandingRocket, 300);
-  setTimeout(launchRandomLandingRocket, 800);
-  setInterval(launchRandomLandingRocket, 1300);
+  setTimeout(launchRandomLandingRocket, 250);
+  setTimeout(launchRandomLandingRocket, 700);
+  setInterval(launchRandomLandingRocket, 1100);
 
   function startCelebration() {
     const name = nameField.value.trim();
@@ -1193,31 +1307,37 @@
 
     sound.init();
 
+    lastCelebrationName = name;
     activeRockets = [];
     bursts = [];
+
+    // Set genuine Google wish
+    currentWishIndex = Math.floor(Math.random() * GOOGLE_FAMILY_WISHES.length);
+    familyWishText.textContent = GOOGLE_FAMILY_WISHES[currentWishIndex];
 
     heroLayer.classList.add('vanished');
     isCelebrating = true;
 
-    sound.playRocketLaunch(1.0);
+    sound.playRocketLaunch(0.9);
 
     const startX = W / 2;
     const startY = H - 20;
     const targetX = W / 2;
-    const targetY = H * 0.28;
+    const targetY = H * 0.26;
 
+    // Fast ceremonial rocket
     const mainRocket = new DirectionalRocket(startX, startY, targetX, targetY, (detonateX, detonateY) => {
       createRealisticExplosion(detonateX, detonateY, ['#ffffff', '#ffd700', '#ff9900', '#ff2200'], 280, 'willow');
 
-      // Light up the surprise dedication in the sky for them & their family!
+      // Light up the colorful sparkler lights dedication
       skyWriting.trigger(name);
 
       startCelebrationSkyFireworks();
 
       setTimeout(() => {
         celebrateBar.classList.add('active');
-      }, 2000);
-    }, 1.35);
+      }, 1600);
+    }, 1.55);
 
     activeRockets.push(mainRocket);
   }
@@ -1228,15 +1348,15 @@
       if (!isCelebrating) return;
 
       const positions = [
-        { x: W * (0.06 + Math.random() * 0.22), y: H * (0.06 + Math.random() * 0.22) },
-        { x: W * (0.72 + Math.random() * 0.22), y: H * (0.06 + Math.random() * 0.22) },
-        { x: W * (0.35 + Math.random() * 0.30), y: H * (0.04 + Math.random() * 0.12) }
+        { x: W * (0.05 + Math.random() * 0.20), y: H * (0.06 + Math.random() * 0.20) },
+        { x: W * (0.75 + Math.random() * 0.20), y: H * (0.06 + Math.random() * 0.20) },
+        { x: W * (0.35 + Math.random() * 0.30), y: H * (0.04 + Math.random() * 0.10) }
       ];
 
       const target = positions[Math.floor(Math.random() * positions.length)];
-      const startX = target.x + (Math.random() - 0.5) * 80;
+      const startX = target.x + (Math.random() - 0.5) * 70;
 
-      sound.playRocketLaunch(0.9);
+      sound.playRocketLaunch(0.85);
       activeRockets.push(new DirectionalRocket(startX, H, target.x, target.y, (ex, ey) => {
         const pal = [
           ['#ffd700', '#ffaa00', '#ffffff'],
@@ -1248,9 +1368,9 @@
         ][Math.floor(Math.random() * 6)];
 
         const type = Math.random() > 0.45 ? 'willow' : 'chrysanthemum';
-        createRealisticExplosion(ex, ey, pal, 140, type);
-      }, 1.3));
-    }, 1200);
+        createRealisticExplosion(ex, ey, pal, 130, type);
+      }, 1.4));
+    }, 1150);
   }
 
   igniteBtn.addEventListener('click', startCelebration);
@@ -1270,9 +1390,8 @@
     nameField.focus();
   });
 
-  // Interactive Click / Drag in sky
+  // Interactive Sky Touch / Click
   let isPointerDown = false;
-
   canvas.addEventListener('pointerdown', (e) => {
     sound.init();
     isPointerDown = true;
@@ -1308,9 +1427,12 @@
     }
   });
 
+  window.addEventListener('resize', resize);
+  resize();
+
 
   /* ==========================================================================
-     8. MASTER RENDERING LOOP
+     9. MASTER RENDERING ANIMATION LOOP
      ========================================================================== */
   function render(now) {
     ctx.globalCompositeOperation = 'source-over';
@@ -1340,7 +1462,7 @@
       ctx.restore();
     }
 
-    // 3. Rockets
+    // 3. Aerial Rockets
     activeRockets = activeRockets.filter(r => !r.dead);
     for (let i = 0; i < activeRockets.length; i++) {
       activeRockets[i].update();
@@ -1375,7 +1497,7 @@
       ctx.restore();
     }
 
-    // 6. Real Sky Firework Sparkler Light Calligraphy
+    // 6. Vibrant Festive Sparkler Light Calligraphy
     skyWriting.updateAndDraw(now);
 
     // 7. Ground Crackers (Anars & Chakras)
