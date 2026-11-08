@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Happy Diwali — Sky Shot Sparkler Name Fireworks</title>
-  <meta name="description" content="Realistic Sky Firework Name Writing and Diwali Crackers.">
+  <title>Happy Diwali — Festival of Lights Celebration</title>
+  <meta name="description" content="Personalized Diwali blessings, fireworks, and crackers for you and your family.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@800;900&family=Montserrat:wght@600;700;800;900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@800;900&family=Montserrat:wght@500;600;700;800;900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       margin: 0;
@@ -64,7 +64,7 @@
       transform: translateY(-2px);
     }
 
-    /* Landing Card */
+    /* Landing Card — Keeps Surprise Secret! */
     #heroLayer {
       position: fixed;
       inset: 0;
@@ -268,8 +268,8 @@
     <div class="luxury-card">
       <div class="sanskrit-verse">॥ शुभम् करोति कल्याणम् ॥</div>
       <h1 class="card-title">DEEPAVALI</h1>
-      <div class="card-subtitle">Sky Shot Firework Name Writing</div>
-      <p class="card-desc">Enter your name to launch the grand sky shot and write your name across the heavens in living, burning sparkler fireworks.</p>
+      <div class="card-subtitle">A Special Festival of Lights Celebration</div>
+      <p class="card-desc">Enter your name to ignite the grand ceremonial rocket and unlock your personal Diwali wishes and celestial fireworks celebration.</p>
       
       <div class="input-box">
         <input 
@@ -283,7 +283,7 @@
         >
       </div>
 
-      <button id="igniteBtn" class="ignite-btn">🚀 LAUNCH SKY SHOT 🪔</button>
+      <button id="igniteBtn" class="ignite-btn">🚀 IGNITE CELEBRATION 🪔</button>
     </div>
   </div>
 
@@ -499,10 +499,12 @@
 
 
   /* ==========================================================================
-     3. HIGH-READABILITY SPARKLER FIREWORK LIGHT LETTERING
-     Same exact design of twinkling firework nodes & diamond glints,
-     but smoothly sampled along letter strokes with generous letter-spacing
-     so every letter is 100% CLEAR, BEAUTIFUL AND READABLE!
+     3. HIGH-READABILITY SPARKLER WISHES FOR THEM & THEIR FAMILY!
+     Displays:
+       Line 1: ✨ HAPPY DIWALI ✨
+       Line 2: <NAME> & FAMILY
+       Line 3: 🪔 JOY, PEACE & PROSPERITY 🪔
+     Smooth, perfectly readable sparkler firework lights!
      ========================================================================== */
   class SkyFireworkLightLettering {
     constructor() {
@@ -522,51 +524,64 @@
       offCanvas.height = H;
 
       const isMobile = W < 600;
-      const cleanName = name.toUpperCase().trim();
-      const nameLen = Math.max(1, cleanName.length);
+      let cleanName = name.toUpperCase().trim();
+      
+      // Format dedication: e.g. "NK ABHIRAJ & FAMILY"
+      let familyText = cleanName.includes('FAMILY') ? cleanName : `${cleanName} & FAMILY`;
+      const nameLen = Math.max(1, familyText.length);
 
-      // Auto-scale font size so ANY name fits with wide margins & spacing
-      const maxTextW = Math.min(W * 0.86, 920);
+      // Auto-scale font sizes
+      const maxTextW = Math.min(W * 0.88, 940);
       const targetSize = Math.floor(Math.min(
-        isMobile ? 46 : 74,
-        maxTextW / (nameLen * 0.72)
+        isMobile ? 38 : 64,
+        maxTextW / (nameLen * 0.66)
       ));
 
-      const line1Size = Math.floor(Math.min(isMobile ? 24 : 36, targetSize * 0.62));
-      const line2Size = Math.max(isMobile ? 22 : 32, targetSize);
+      const line1Size = Math.floor(Math.min(isMobile ? 22 : 36, targetSize * 0.7));
+      const line2Size = Math.max(isMobile ? 20 : 30, targetSize);
+      const line3Size = Math.floor(Math.min(isMobile ? 15 : 24, targetSize * 0.45));
 
-      const line1Y = Math.floor(H * 0.23);
-      const line2Y = Math.floor(H * 0.38);
+      const line1Y = Math.floor(H * 0.20);
+      const line2Y = Math.floor(H * 0.32);
+      const line3Y = Math.floor(H * 0.42);
 
-      // Render line 1: ✨ HAPPY DIWALI ✨ with generous letter spacing
+      // Render line 1: ✨ HAPPY DIWALI ✨
       offCtx.textAlign = 'center';
       offCtx.textBaseline = 'middle';
-      if ('letterSpacing' in offCtx) {
-        offCtx.letterSpacing = isMobile ? '4px' : '7px';
-      }
+      if ('letterSpacing' in offCtx) offCtx.letterSpacing = isMobile ? '3px' : '6px';
       offCtx.font = `800 ${line1Size}px 'Montserrat', sans-serif`;
       offCtx.fillStyle = '#ffffff';
       offCtx.fillText('✨ HAPPY DIWALI ✨', W / 2, line1Y);
 
-      // Render line 2: USER'S NAME with generous letter spacing
-      if ('letterSpacing' in offCtx) {
-        offCtx.letterSpacing = isMobile ? '6px' : '10px';
-      }
+      // Render line 2: <NAME> & FAMILY
+      if ('letterSpacing' in offCtx) offCtx.letterSpacing = isMobile ? '4px' : '7px';
       offCtx.font = `800 ${line2Size}px 'Montserrat', sans-serif`;
-      offCtx.fillText(cleanName, W / 2, line2Y);
+      offCtx.fillText(familyText, W / 2, line2Y);
+
+      // Render line 3: 🪔 JOY, PEACE & PROSPERITY 🪔
+      if ('letterSpacing' in offCtx) offCtx.letterSpacing = isMobile ? '2px' : '5px';
+      offCtx.font = `700 ${line3Size}px 'Montserrat', sans-serif`;
+      offCtx.fillText('🪔 JOY, PEACE & PROSPERITY 🪔', W / 2, line3Y);
 
       const imgData = offCtx.getImageData(0, 0, W, H).data;
 
-      // Smooth step sampling: exactly 5px so strokes are continuous, smooth, and perfectly formed
+      // Smooth step sampling: 5px for continuous, elegant letter curves
       const step = isMobile ? 5 : 5;
       for (let y = 0; y < H; y += step) {
         for (let x = 0; x < W; x += step) {
           const idx = (y * W + x) * 4;
           if (imgData[idx] > 140) {
+            let col = '#ffd700'; // Gold for Happy Diwali
+            if (y > (line1Y + line2Y) / 2 && y <= (line2Y + line3Y) / 2) {
+              col = '#ffffff'; // White-hot diamond for Name & Family
+            } else if (y > (line2Y + line3Y) / 2) {
+              col = '#ffca80'; // Warm peach/gold for blessings
+            }
+
             this.burners.push({
               x: x,
               y: y,
-              baseColor: y < (line1Y + line2Y) / 2 ? '#ffd700' : '#ffffff',
+              baseColor: col,
               phase: Math.random() * Math.PI * 2,
               speed: Math.random() * 0.25 + 0.15,
               spikeLen: Math.random() * 3 + 3.5
@@ -585,7 +600,7 @@
     updateAndDraw(now) {
       if (!this.active) return;
 
-      // Delicate sizzling embers raining downwards
+      // Delicate dripping embers
       if (this.sparks.length < 160) {
         for (let i = 0; i < 3; i++) {
           if (this.burners.length === 0) break;
@@ -607,7 +622,7 @@
 
       if (Math.random() < 0.12) sound.playCrackle();
 
-      // 1. Draw Living Sparks & Falling Embers
+      // 1. Draw Sparks
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
       this.sparks = this.sparks.filter(s => s.alpha > 0.01);
@@ -617,7 +632,7 @@
         s.y += s.vy;
         s.vx *= 0.96;
         s.vy *= 0.96;
-        s.vy += 0.09; // Gravity drip
+        s.vy += 0.09;
         s.alpha -= s.decay;
 
         ctx.fillStyle = s.color;
@@ -627,27 +642,24 @@
         ctx.fill();
       }
 
-      // 2. Draw Twinkling Sparkler Light Nodes (Smooth, Clear, High-Definition)
+      // 2. Draw Twinkling Sparkler Light Nodes
       for (let i = 0; i < this.burners.length; i++) {
         const b = this.burners[i];
         b.phase += b.speed;
         const shine = 0.5 + 0.5 * Math.sin(b.phase);
 
-        // Warm fiery golden aura around node
         ctx.fillStyle = b.baseColor;
         ctx.globalAlpha = 0.65 + 0.35 * shine;
         ctx.beginPath();
         ctx.arc(b.x, b.y, 2.0 + shine * 1.2, 0, Math.PI * 2);
         ctx.fill();
 
-        // White-hot pinpoint diamond core
         ctx.fillStyle = '#ffffff';
         ctx.globalAlpha = 0.85 + 0.15 * shine;
         ctx.beginPath();
         ctx.arc(b.x, b.y, 1.1, 0, Math.PI * 2);
         ctx.fill();
 
-        // Diamond cross sparkles on glistening nodes
         if (shine > 0.84) {
           ctx.strokeStyle = '#ffffff';
           ctx.lineWidth = 0.85;
@@ -1197,7 +1209,7 @@
     const mainRocket = new DirectionalRocket(startX, startY, targetX, targetY, (detonateX, detonateY) => {
       createRealisticExplosion(detonateX, detonateY, ['#ffffff', '#ffd700', '#ff9900', '#ff2200'], 280, 'willow');
 
-      // Light up the name in readable, smooth sparkler firework calligraphy
+      // Light up the surprise dedication in the sky for them & their family!
       skyWriting.trigger(name);
 
       startCelebrationSkyFireworks();
