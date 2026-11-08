@@ -321,23 +321,23 @@
       return this.enabled;
     }
 
-    playRocketLaunch(duration = 1.8) {
+    playRocketLaunch(duration = 1.2) {
       if (!this.enabled || !this.ctx) return;
       const now = this.ctx.currentTime;
 
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(260, now);
-      osc.frequency.exponentialRampToValueAtTime(1550, now + duration * 0.95);
+      osc.frequency.setValueAtTime(320, now);
+      osc.frequency.exponentialRampToValueAtTime(1700, now + duration * 0.95);
 
       gain.gain.setValueAtTime(0.001, now);
-      gain.gain.linearRampToValueAtTime(0.12, now + duration * 0.35);
+      gain.gain.linearRampToValueAtTime(0.13, now + duration * 0.35);
       gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
 
       const filter = this.ctx.createBiquadFilter();
       filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(2400, now);
+      filter.frequency.setValueAtTime(2600, now);
 
       osc.connect(filter);
       filter.connect(gain);
@@ -500,7 +500,6 @@
 
   /* ==========================================================================
      3. CRYSTAL-CLEAR SPARKLER TYPOGRAPHY
-     NO WHITE BLOWOUT! CLEAN VECTOR GLYPHS WITH SPARKLER EMISSION!
      ========================================================================== */
   class ClearSparklerText {
     constructor() {
@@ -1014,7 +1013,7 @@
      6. AERIAL ROCKETS & MULTI-BREAK SHELL EXPLOSIONS
      ========================================================================== */
   class DirectionalRocket {
-    constructor(startX, startY, targetX, targetY, onDetonate) {
+    constructor(startX, startY, targetX, targetY, onDetonate, speedMultiplier = 1.0) {
       this.x = startX;
       this.y = startY;
       this.targetX = targetX;
@@ -1025,12 +1024,13 @@
       const dy = targetY - startY;
       const dist = Math.hypot(dx, dy);
 
-      this.vx = (dx / dist) * (14 + Math.random() * 4);
-      this.vy = (dy / dist) * (18 + Math.random() * 5);
-      this.thrust = 0.28;
+      // Fast, snappy ascent speed
+      this.vx = (dx / dist) * (18 + Math.random() * 5) * speedMultiplier;
+      this.vy = (dy / dist) * (24 + Math.random() * 6) * speedMultiplier;
+      this.thrust = 0.38 * speedMultiplier;
       this.dead = false;
       this.trail = [];
-      this.curve = (Math.random() - 0.5) * 0.2;
+      this.curve = (Math.random() - 0.5) * 0.25;
     }
 
     update() {
@@ -1175,11 +1175,12 @@
 
 
   /* ==========================================================================
-     7. MULTI-ROCKETS FOR LANDING PAGE ONLY
-     On Celebration: ONLY THE MAIN CEREMONIAL ROCKET LAUNCHES!
+     7. RAPID MULTI-ROCKETS ON LANDING PAGE
+     CELEBRATION PAGE: FAST MAIN ROCKET + SURROUNDING SKY FIREWORKS!
      ========================================================================== */
   let activeRockets = [];
   let isCelebrating = false;
+  let celebrationSkyInterval = null;
 
   const heroLayer = document.getElementById('heroLayer');
   const nameField = document.getElementById('nameField');
@@ -1187,20 +1188,29 @@
   const relaunchBtn = document.getElementById('relaunchBtn');
   const celebrateBar = document.getElementById('celebrateBar');
 
-  // Multi-directional rockets on LANDING PAGE ONLY
-  setInterval(() => {
-    // Only launch background rockets when on the landing page!
-    if (!isCelebrating && activeRockets.length < 3) {
+  // Launch function for random rockets
+  function launchRandomLandingRocket() {
+    if (!isCelebrating && activeRockets.length < 4) {
       const startX = Math.random() * W;
-      const targetX = startX + (Math.random() - 0.5) * W * 0.4;
-      const targetY = H * 0.12 + Math.random() * H * 0.35;
-      sound.playRocketLaunch(1.4);
+      const targetX = startX + (Math.random() - 0.5) * W * 0.45;
+      const targetY = H * 0.10 + Math.random() * H * 0.38;
+      sound.playRocketLaunch(1.0);
       activeRockets.push(new DirectionalRocket(startX, H, targetX, targetY, (ex, ey) => {
-        const pal = [['#ffd700', '#ffffff', '#ff8800'], ['#00eeff', '#ffffff', '#0066ff'], ['#ff0055', '#ff99aa']][Math.floor(Math.random() * 3)];
-        createRealisticExplosion(ex, ey, pal, 100, Math.random() > 0.5 ? 'willow' : 'chrysanthemum');
-      }));
+        const pal = [
+          ['#ffd700', '#ffffff', '#ff8800'],
+          ['#00eeff', '#ffffff', '#0066ff'],
+          ['#ff0055', '#ff99aa', '#ffffff'],
+          ['#00ff77', '#ffffff', '#22ffcc']
+        ][Math.floor(Math.random() * 4)];
+        createRealisticExplosion(ex, ey, pal, 110, Math.random() > 0.5 ? 'willow' : 'chrysanthemum');
+      }, 1.25)); // Snappy speed!
     }
-  }, 3200);
+  }
+
+  // Fast launches on landing page: launch immediately + every 1400ms!
+  setTimeout(launchRandomLandingRocket, 300);
+  setTimeout(launchRandomLandingRocket, 900);
+  setInterval(launchRandomLandingRocket, 1400);
 
   function startCelebration() {
     const name = nameField.value.trim();
@@ -1215,37 +1225,64 @@
 
     sound.init();
 
-    // 1. Clear any lingering background landing page rockets
+    // Clear landing page rockets
     activeRockets = [];
     bursts = [];
 
-    // 2. Hide hero layer
     heroLayer.classList.add('vanished');
     isCelebrating = true;
 
-    // 3. Play ascent whistle
-    sound.playRocketLaunch(1.8);
+    // Fast, crisp launch sound
+    sound.playRocketLaunch(1.0);
 
-    // 4. Launch ONLY THE SINGLE CEREMONIAL ROCKET straight to the sky!
+    // Fast Ceremonial Rocket directly to upper center
     const startX = W / 2;
     const startY = H - 20;
     const targetX = W / 2;
     const targetY = H * 0.28;
 
     const mainRocket = new DirectionalRocket(startX, startY, targetX, targetY, (detonateX, detonateY) => {
-      // Primary celebratory burst
+      // Primary burst
       createRealisticExplosion(detonateX, detonateY, ['#ffffff', '#ffd700', '#ff9900', '#ff2200'], 260, 'willow');
 
-      // Light up the name in the clear night sky
+      // Sparkler name reveal
       sparklerText.trigger(name);
 
-      // Show Celebrate Again bar after reveal
+      // Start continuous sky fireworks around the name!
+      startCelebrationSkyFireworks();
+
       setTimeout(() => {
         celebrateBar.classList.add('active');
-      }, 2400);
-    });
+      }, 2000);
+    }, 1.35); // Fast flight speed!
 
     activeRockets.push(mainRocket);
+  }
+
+  // Continuous festive fireworks bursting in the background around the name
+  function startCelebrationSkyFireworks() {
+    clearInterval(celebrationSkyInterval);
+    celebrationSkyInterval = setInterval(() => {
+      if (!isCelebrating) return;
+
+      // Position fireworks on the upper sides and top so they never cover the name
+      const side = Math.random() < 0.5 ? 'left' : 'right';
+      const x = side === 'left'
+        ? (W * 0.08 + Math.random() * W * 0.18)
+        : (W * 0.74 + Math.random() * W * 0.18);
+      const y = H * 0.08 + Math.random() * H * 0.22;
+
+      const pal = [
+        ['#ffd700', '#ffaa00', '#ffffff'],
+        ['#00e5ff', '#ffffff', '#0077ff'],
+        ['#ff0077', '#ff88bb', '#ffffff'],
+        ['#00ff88', '#ffffff', '#22ffcc'],
+        ['#ff3300', '#ffd700', '#ff8800']
+      ][Math.floor(Math.random() * 5)];
+
+      const type = Math.random() > 0.4 ? 'willow' : 'chrysanthemum';
+      createRealisticExplosion(x, y, pal, 120, type);
+    }, 1800);
   }
 
   igniteBtn.addEventListener('click', startCelebration);
@@ -1255,6 +1292,7 @@
 
   relaunchBtn.addEventListener('click', () => {
     celebrateBar.classList.remove('active');
+    clearInterval(celebrationSkyInterval);
     sparklerText.clear();
     activeRockets = [];
     bursts = [];
@@ -1305,10 +1343,8 @@
 
   /* ==========================================================================
      8. MASTER RENDERING LOOP
-     Always source-over dark background: NEVER BLOWS OUT TO WHITE!
      ========================================================================== */
   function render(now) {
-    // Reset to source-over so the canvas NEVER turns into white or grey mud!
     ctx.globalCompositeOperation = 'source-over';
     ctx.fillStyle = 'rgba(1, 0, 4, 0.26)';
     ctx.fillRect(0, 0, W, H);
@@ -1386,7 +1422,7 @@
       diyas[i].draw();
     }
 
-    // 8. Crystal-Clear Sparkler Text (Pure dark sky background, 100% sharp and readable!)
+    // 8. Crystal-Clear Sparkler Text
     sparklerText.updateAndDraw(now);
 
     requestAnimationFrame(render);
