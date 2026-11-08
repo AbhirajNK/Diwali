@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Deepavali — The Grand Festival of Lights</title>
-  <meta name="description" content="Realistic Indian Diwali Celebration with Anars, Chakras, Rockets, and Fireworks.">
+  <title>Happy Diwali — Sky Shot Sparkler Name Fireworks</title>
+  <meta name="description" content="Realistic Sky Firework Name Writing and Diwali Crackers.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       margin: 0;
@@ -19,7 +19,7 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background: #010005;
+      background: #000000;
       font-family: 'Montserrat', sans-serif;
       color: #fff;
       user-select: none;
@@ -41,7 +41,7 @@
       top: 18px;
       right: 18px;
       z-index: 50;
-      background: rgba(18, 8, 28, 0.8);
+      background: rgba(14, 8, 22, 0.82);
       border: 1px solid rgba(255, 215, 120, 0.45);
       color: #ffd777;
       padding: 8px 18px;
@@ -51,20 +51,20 @@
       letter-spacing: 1.5px;
       cursor: pointer;
       backdrop-filter: blur(14px);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 180, 0, 0.2);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 180, 0, 0.2);
       transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
       display: flex;
       align-items: center;
       gap: 8px;
     }
     #soundPill:hover {
-      background: rgba(38, 16, 56, 0.95);
+      background: rgba(35, 15, 52, 0.95);
       border-color: #ffd700;
       box-shadow: 0 0 35px rgba(255, 215, 0, 0.4);
       transform: translateY(-2px);
     }
 
-    /* Hero Input Layer */
+    /* Landing Card Layer */
     #heroLayer {
       position: fixed;
       inset: 0;
@@ -84,11 +84,11 @@
 
     .luxury-card {
       pointer-events: auto;
-      max-width: 540px;
+      max-width: 520px;
       width: 90%;
-      padding: 44px 34px;
-      background: radial-gradient(circle at 50% 0%, rgba(55, 18, 75, 0.55) 0%, rgba(10, 2, 18, 0.86) 100%);
-      border: 1px solid rgba(255, 215, 130, 0.36);
+      padding: 44px 32px;
+      background: radial-gradient(circle at 50% 0%, rgba(45, 15, 65, 0.55) 0%, rgba(8, 2, 14, 0.9) 100%);
+      border: 1px solid rgba(255, 215, 130, 0.35);
       border-radius: 28px;
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
@@ -96,7 +96,6 @@
                   0 0 90px rgba(255, 140, 0, 0.18),
                   inset 0 1px 0 rgba(255, 255, 255, 0.2);
       text-align: center;
-      position: relative;
     }
 
     .sanskrit-verse {
@@ -139,7 +138,6 @@
       font-weight: 300;
     }
 
-    /* Input Box */
     .input-box {
       position: relative;
       max-width: 380px;
@@ -148,7 +146,7 @@
     .name-input {
       width: 100%;
       padding: 16px 24px;
-      background: rgba(12, 4, 22, 0.7);
+      background: rgba(12, 4, 22, 0.75);
       border: 1.5px solid rgba(255, 215, 120, 0.4);
       border-radius: 50px;
       outline: none;
@@ -173,7 +171,6 @@
       transform: scale(1.02);
     }
 
-    /* Ignite Button */
     .ignite-btn {
       position: relative;
       padding: 16px 44px;
@@ -192,27 +189,9 @@
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       overflow: hidden;
     }
-    .ignite-btn::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.75) 50%, transparent 60%);
-      transform: rotate(25deg) translateY(-100%);
-      animation: btnShimmer 3.5s infinite;
-    }
-    @keyframes btnShimmer {
-      0%, 75% { transform: rotate(25deg) translateY(-100%); }
-      100% { transform: rotate(25deg) translateY(100%); }
-    }
     .ignite-btn:hover {
       transform: translateY(-2px) scale(1.04);
       box-shadow: 0 16px 45px rgba(255, 90, 0, 0.7), 0 0 85px rgba(255, 215, 0, 0.6);
-    }
-    .ignite-btn:active {
-      transform: translateY(1px) scale(0.98);
     }
 
     .error-shake {
@@ -248,7 +227,7 @@
     }
     .action-pill {
       padding: 12px 32px;
-      background: rgba(18, 8, 28, 0.85);
+      background: rgba(16, 8, 24, 0.88);
       border: 1px solid rgba(255, 215, 100, 0.55);
       border-radius: 50px;
       color: #ffd777;
@@ -258,11 +237,11 @@
       letter-spacing: 2px;
       cursor: pointer;
       backdrop-filter: blur(14px);
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.7), 0 0 35px rgba(255, 170, 0, 0.3);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 170, 0, 0.3);
       transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     .action-pill:hover {
-      background: rgba(38, 16, 56, 0.98);
+      background: rgba(35, 15, 50, 0.98);
       border-color: #ffd700;
       transform: translateY(-2px) scale(1.03);
       box-shadow: 0 0 45px rgba(255, 215, 0, 0.55);
@@ -280,18 +259,17 @@
 
   <canvas id="canvas"></canvas>
 
-  <button id="soundPill" title="Toggle realistic cracker sounds">
+  <button id="soundPill" title="Toggle realistic sound effects">
     <span id="soundIcon">🔊</span>
     <span id="soundTxt">SOUND ON</span>
   </button>
 
-  <!-- Hero Landing Interface -->
   <div id="heroLayer">
     <div class="luxury-card">
       <div class="sanskrit-verse">॥ शुभम् करोति कल्याणम् ॥</div>
       <h1 class="card-title">DEEPAVALI</h1>
-      <div class="card-subtitle">The Grand Festival of Lights</div>
-      <p class="card-desc">Enter your name to launch the ceremonial rocket and ignite your personalized sparkler fireworks celebration across the night sky.</p>
+      <div class="card-subtitle">Sky Shot Firework Name Writing</div>
+      <p class="card-desc">Enter your name to launch the grand sky shot and write your name across the heavens in living, burning sparkler fireworks.</p>
       
       <div class="input-box">
         <input 
@@ -305,22 +283,21 @@
         >
       </div>
 
-      <button id="igniteBtn" class="ignite-btn">🚀 IGNITE CELEBRATION 🪔</button>
+      <button id="igniteBtn" class="ignite-btn">🚀 LAUNCH SKY SHOT 🪔</button>
     </div>
   </div>
 
-  <!-- In-Celebration Controls -->
   <div id="celebrateBar">
     <button id="relaunchBtn" class="action-pill">↺ CELEBRATE ANOTHER NAME</button>
-    <div class="hint-label">✨ Tap or drag anywhere in the sky to launch fireworks &amp; draw sparklers ✨</div>
+    <div class="hint-label">✨ Tap or drag in the sky to launch fireworks &amp; draw sparklers ✨</div>
   </div>
 
   <script>
   'use strict';
 
   /* ==========================================================================
-     1. HIGH-FIDELITY WEB AUDIO SYNTHESIZER
-     Simulates Anar fountains, Chakras, Rockets, and Shell Explosions
+     1. WEB AUDIO SYNTHESIZER
+     Simulates Launch Whistles, Explosions, and Continuous Sparkler Sizzle
      ========================================================================== */
   class SoundSynthesizer {
     constructor() {
@@ -417,7 +394,6 @@
       osc.start(now);
       osc.stop(now + 1.2);
 
-      // Low-pass explosive burst
       const bufferSize = Math.floor(this.ctx.sampleRate * 1.4);
       const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
       const data = buffer.getChannelData(0);
@@ -479,7 +455,7 @@
 
 
   /* ==========================================================================
-     2. CANVAS SETUP & ATMOSPHERIC SKY
+     2. CANVAS SETUP & SCINTILLATING NIGHT SKY
      ========================================================================== */
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d', { alpha: false });
@@ -525,7 +501,195 @@
 
 
   /* ==========================================================================
-     3. REALISTIC INDIAN CRACKERS (Anars & Chakras)
+     3. LIVING SPARKLER WRITING ENGINE (Matches Stock Footage "Sparkly Firework Writing")
+     Each letter is formed by burning sparkler lines spitting thousands of falling embers!
+     NO ROUND THING! NO BUBBLE! PURE SKY SPARK CALLIGRAPHY!
+     ========================================================================== */
+  class LivingSparklerBurner {
+    constructor(x, y, color = '#ffd700') {
+      this.x = x;
+      this.y = y;
+      this.color = color;
+      this.twinklePhase = Math.random() * Math.PI * 2;
+    }
+
+    emit(sparksList) {
+      this.twinklePhase += 0.35;
+      // High-speed spark burst in 360 degrees around the letter stroke
+      const sparkCount = Math.random() < 0.35 ? 2 : 1;
+      for (let i = 0; i < sparkCount; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 3.5 + 0.8;
+        const vx = Math.cos(angle) * speed;
+        // Burning iron filings drizzle downwards with gravity
+        const vy = Math.sin(angle) * speed + Math.random() * 1.2;
+
+        const colors = ['#ffffff', '#fffbe6', '#ffd700', '#ff9900', '#ff4400'];
+        const col = colors[Math.floor(Math.random() * colors.length)];
+        sparksList.push({
+          x: this.x + (Math.random() - 0.5) * 2,
+          y: this.y + (Math.random() - 0.5) * 2,
+          vx, vy,
+          color: col,
+          size: Math.random() * 2.0 + 1.0,
+          alpha: 1.0,
+          decay: 0.022 + Math.random() * 0.02,
+          drag: 0.96,
+          gravity: 0.12 // Embers naturally rain down from the sky writing
+        });
+      }
+    }
+  }
+
+  class SkyShotNameWriting {
+    constructor() {
+      this.active = false;
+      this.burners = [];
+      this.textEmbers = [];
+      this.lines = [];
+      this.igniteTime = 0;
+    }
+
+    trigger(name) {
+      this.active = true;
+      this.igniteTime = performance.now();
+      this.burners = [];
+      this.textEmbers = [];
+
+      this.lines = [
+        { text: '✨ HAPPY DIWALI ✨', color: '#ffd700' },
+        { text: name.toUpperCase(), color: '#ffffff' }
+      ];
+
+      // Sample letter stroke coordinates via Offscreen Canvas
+      const offCanvas = document.createElement('canvas');
+      const offCtx = offCanvas.getContext('2d');
+      offCanvas.width = W;
+      offCanvas.height = H;
+
+      const isMobile = W < 600;
+      const nameLen = Math.max(1, name.length);
+
+      // Auto-fit font sizes
+      const maxTextW = Math.min(W * 0.88, 920);
+      const targetSize = Math.floor(Math.min(
+        isMobile ? 54 : 84,
+        maxTextW / (nameLen * 0.62)
+      ));
+
+      const line1Size = Math.floor(Math.min(isMobile ? 26 : 42, targetSize * 0.65));
+      const line2Size = Math.max(isMobile ? 24 : 36, targetSize);
+
+      const line1Y = Math.floor(H * 0.22);
+      const line2Y = Math.floor(H * 0.35);
+
+      // Render line 1
+      offCtx.textAlign = 'center';
+      offCtx.textBaseline = 'middle';
+      offCtx.font = `900 ${line1Size}px 'Cinzel', serif`;
+      offCtx.fillStyle = '#ffffff';
+      offCtx.fillText(this.lines[0].text, W / 2, line1Y);
+
+      // Render line 2
+      offCtx.font = `900 ${line2Size}px 'Cinzel', serif`;
+      offCtx.fillText(this.lines[1].text, W / 2, line2Y);
+
+      const imgData = offCtx.getImageData(0, 0, W, H);
+      const data = imgData.data;
+
+      // Sample pixel grid to create burning sparkler lance points along the text
+      const step = isMobile ? 6 : 5;
+      for (let y = 0; y < H; y += step) {
+        for (let x = 0; x < W; x += step) {
+          const idx = (y * W + x) * 4;
+          if (data[idx] > 150) {
+            this.burners.push(new LivingSparklerBurner(x, y, y < (line1Y + line2Y) / 2 ? '#ffd700' : '#ffffff'));
+          }
+        }
+      }
+    }
+
+    clear() {
+      this.active = false;
+      this.burners = [];
+      this.textEmbers = [];
+    }
+
+    updateAndDraw(now) {
+      if (!this.active) return;
+
+      // Continuously emit burning sparks from the sparkler letters
+      for (let i = 0; i < this.burners.length; i++) {
+        this.burners[i].emit(this.textEmbers);
+      }
+
+      // Sizzle audio during burning
+      if (Math.random() < 0.14) {
+        sound.playCrackle();
+      }
+
+      // 1. Draw Living Falling Embers
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+
+      this.textEmbers = this.textEmbers.filter(e => e.alpha > 0.01);
+      for (let i = 0; i < this.textEmbers.length; i++) {
+        const e = this.textEmbers[i];
+        e.vx *= e.drag;
+        e.vy *= e.drag;
+        e.vy += e.gravity;
+        e.x += e.vx;
+        e.y += e.vy;
+        e.alpha -= e.decay;
+
+        ctx.fillStyle = e.color;
+        ctx.globalAlpha = Math.max(0, e.alpha);
+        ctx.beginPath();
+        ctx.arc(e.x, e.y, e.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // 2. Draw Burning Letter Stroke Core (White-hot sparkling calligraphy)
+      for (let i = 0; i < this.burners.length; i++) {
+        const b = this.burners[i];
+        const shine = 0.5 + 0.5 * Math.sin(b.twinklePhase);
+
+        ctx.fillStyle = b.color;
+        ctx.globalAlpha = 0.7 + 0.3 * shine;
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, 1.8 + shine * 1.2, 0, Math.PI * 2);
+        ctx.fill();
+
+        // White-hot center
+        ctx.fillStyle = '#ffffff';
+        ctx.globalAlpha = shine;
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, 1.0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Diamond cross flare on bright nodes
+        if (shine > 0.85 && Math.random() < 0.12) {
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 1;
+          const len = 7 + Math.random() * 5;
+          ctx.beginPath();
+          ctx.moveTo(b.x - len, b.y);
+          ctx.lineTo(b.x + len, b.y);
+          ctx.moveTo(b.x, b.y - len);
+          ctx.lineTo(b.x, b.y + len);
+          ctx.stroke();
+        }
+      }
+
+      ctx.restore();
+    }
+  }
+
+  const skyWriting = new SkyShotNameWriting();
+
+
+  /* ==========================================================================
+     4. ANARS (Flower Pot Fountains) & CHAKRAS (Spinning Wheels)
      ========================================================================== */
   let sparks = [];
   let smokePuffs = [];
@@ -550,7 +714,6 @@
     });
   }
 
-  // ANAR (Flower Pot Firework Fountain)
   class AnarFountain {
     constructor(x, y, scale = 1.0) {
       this.x = x;
@@ -558,16 +721,13 @@
       this.scale = scale;
       this.height = 42 * scale;
       this.baseWidth = 34 * scale;
-      this.active = true;
     }
 
     update() {
-      if (!this.active) return;
-      // Roaring fountain of sparks shooting high upwards
-      const sparkCount = Math.floor(Math.random() * 4 + 3);
       const topY = this.y - this.height;
+      const count = Math.floor(Math.random() * 4 + 3);
 
-      for (let i = 0; i < sparkCount; i++) {
+      for (let i = 0; i < count; i++) {
         const angle = -Math.PI / 2 + (Math.random() - 0.5) * 0.55;
         const speed = (Math.random() * 11 + 9) * this.scale;
         const vx = Math.cos(angle) * speed;
@@ -590,15 +750,14 @@
       const h = this.height;
       const w = this.baseWidth;
 
-      // Base Cone Body (Traditional colorful Indian Anar shell)
       ctx.save();
-      // Ground cast shadow
+      // Shadow
       ctx.fillStyle = 'rgba(0,0,0,0.6)';
       ctx.beginPath();
       ctx.ellipse(x, y + 2, w * 0.7, 5 * s, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Golden Cone Body
+      // Cone
       const coneGrad = ctx.createLinearGradient(x - w / 2, y, x + w / 2, y - h);
       coneGrad.addColorStop(0, '#9e1a00');
       coneGrad.addColorStop(0.35, '#d44900');
@@ -614,12 +773,7 @@
       ctx.fillStyle = coneGrad;
       ctx.fill();
 
-      // Cone Rim Highlight
-      ctx.strokeStyle = '#ffe885';
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
-
-      // Blinding fountain nozzle core glow
+      // Nozzle Glow
       ctx.globalCompositeOperation = 'lighter';
       const nozzleGlow = ctx.createRadialGradient(x, y - h, 2, x, y - h, 38 * s);
       nozzleGlow.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
@@ -634,24 +788,21 @@
     }
   }
 
-  // CHAKRA (Ground Wheel Spinner)
   class GroundChakra {
     constructor(x, y, scale = 1.0) {
       this.x = x;
       this.y = y;
       this.scale = scale;
       this.angle = 0;
-      this.spinSpeed = 0.42;
     }
 
     update() {
-      this.angle += this.spinSpeed;
-      // High-speed tangential sparks flying outwards in a blazing spinning wheel
+      this.angle += 0.42;
       for (let i = 0; i < 4; i++) {
         const jetAngle = this.angle + (i * Math.PI / 2);
         const radius = 16 * this.scale;
         const px = this.x + Math.cos(jetAngle) * radius;
-        const py = this.y + Math.sin(jetAngle) * radius * 0.45; // Isometric perspective
+        const py = this.y + Math.sin(jetAngle) * radius * 0.45;
 
         const tangentAngle = jetAngle + Math.PI / 2;
         const speed = (Math.random() * 8 + 6) * this.scale;
@@ -670,7 +821,6 @@
       const y = this.y;
 
       ctx.save();
-      // Glowing circular ring on ground
       ctx.globalCompositeOperation = 'lighter';
       const wheelGlow = ctx.createRadialGradient(x, y, 4, x, y, 40 * s);
       wheelGlow.addColorStop(0, 'rgba(255, 230, 150, 0.7)');
@@ -681,7 +831,6 @@
       ctx.ellipse(x, y, 40 * s, 18 * s, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Spinning Chakra Disc
       ctx.translate(x, y);
       ctx.scale(1, 0.45);
       ctx.rotate(this.angle);
@@ -691,7 +840,6 @@
       ctx.arc(0, 0, 18 * s, 0, Math.PI * 2);
       ctx.fill();
 
-      // Spiral arms on disc
       ctx.strokeStyle = '#ffd700';
       ctx.lineWidth = 3 * s;
       for (let j = 0; j < 4; j++) {
@@ -700,17 +848,14 @@
         ctx.stroke();
       }
 
-      // Bright white central pivot
       ctx.fillStyle = '#ffffff';
       ctx.beginPath();
       ctx.arc(0, 0, 4 * s, 0, Math.PI * 2);
       ctx.fill();
-
       ctx.restore();
     }
   }
 
-  // Setup Anars and Chakras
   let anars = [];
   let chakras = [];
 
@@ -718,12 +863,8 @@
     anars = [];
     chakras = [];
     const scale = Math.min(1.1, Math.max(0.7, W / 1000));
-
-    // Left and Right Anars (fountain flower pots)
     anars.push(new AnarFountain(W * 0.12, H - 26, scale));
     anars.push(new AnarFountain(W * 0.88, H - 26, scale));
-
-    // Left and Right spinning Chakras
     chakras.push(new GroundChakra(W * 0.24, H - 24, scale));
     chakras.push(new GroundChakra(W * 0.76, H - 24, scale));
   }
@@ -732,7 +873,7 @@
 
 
   /* ==========================================================================
-     4. PHOTOREALISTIC TRADITIONAL CLAY DIYAS
+     5. PHOTOREALISTIC TRADITIONAL CLAY DIYAS
      ========================================================================== */
   class PhotorealisticDiya {
     constructor(x, y, scale = 1.0) {
@@ -742,7 +883,7 @@
       this.flicker = Math.random() * 100;
     }
 
-    draw(time) {
+    draw() {
       this.flicker += 0.09;
       const s = this.scale;
       const x = this.x;
@@ -807,10 +948,9 @@
       ctx.lineTo(x + tilt * 0.35, y - 6 * s);
       ctx.stroke();
 
-      // 3-Layer Flame (Lighter blend)
+      // 3-Layer Flame
       ctx.globalCompositeOperation = 'lighter';
 
-      // Outer Orange
       ctx.beginPath();
       ctx.moveTo(x - flameW, y - 5 * s);
       ctx.quadraticCurveTo(x - flameW * 1.1, y - flameH * 0.55, x + tilt, y - flameH - 5 * s);
@@ -823,7 +963,6 @@
       ctx.fillStyle = outerGrad;
       ctx.fill();
 
-      // Core Golden Flame
       ctx.beginPath();
       ctx.moveTo(x - flameW * 0.55, y - 5 * s);
       ctx.quadraticCurveTo(x - flameW * 0.6, y - flameH * 0.6, x + tilt * 0.7, y - flameH * 0.85 - 5 * s);
@@ -832,7 +971,6 @@
       ctx.fillStyle = '#ffdd33';
       ctx.fill();
 
-      // White-hot center
       ctx.beginPath();
       ctx.moveTo(x - flameW * 0.25, y - 5 * s);
       ctx.quadraticCurveTo(x - flameW * 0.28, y - flameH * 0.4, x + tilt * 0.4, y - flameH * 0.5 - 5 * s);
@@ -862,7 +1000,7 @@
 
 
   /* ==========================================================================
-     5. ROCKETS IN ALL DIRECTIONS (Multi-Angle Aerial Trajectories)
+     6. AERIAL ROCKETS & MULTI-BREAK SHELL EXPLOSIONS
      ========================================================================== */
   class DirectionalRocket {
     constructor(startX, startY, targetX, targetY, onDetonate) {
@@ -888,11 +1026,10 @@
       if (this.dead) return;
 
       this.vx += this.curve;
-      this.vy -= this.thrust; // Accelerate upward
+      this.vy -= this.thrust;
       this.x += this.vx;
       this.y += this.vy;
 
-      // Fiery exhaust trail
       for (let i = 0; i < 3; i++) {
         const spread = (Math.random() - 0.5) * 3;
         const sparkVx = -this.vx * 0.2 + (Math.random() - 0.5) * 2;
@@ -923,7 +1060,6 @@
       }
       ctx.stroke();
 
-      // Rocket Missile Body
       ctx.translate(this.x, this.y);
       const angle = Math.atan2(this.vy, this.vx) + Math.PI / 2;
       ctx.rotate(angle);
@@ -948,190 +1084,6 @@
     }
   }
 
-
-  /* ==========================================================================
-     6. HIGH-RESOLUTION, CRYSTAL-CLEAR SPARKLER TYPOGRAPHY
-     (Fixed blurry/overlapping letters from image 2!)
-     ========================================================================== */
-  class ClearSparklerText {
-    constructor() {
-      this.active = false;
-      this.lines = [];
-      this.particles = [];
-      this.glowPhase = 0;
-      this.burstTime = 0;
-    }
-
-    trigger(name, burstX, burstY) {
-      this.active = true;
-      this.burstTime = performance.now();
-      this.particles = [];
-
-      // Clean, well-spaced lines
-      this.lines = [
-        { text: '✨ HAPPY DIWALI ✨', color: '#ffd700', subColor: '#ffffff' },
-        { text: name.toUpperCase(), color: '#ffffff', subColor: '#ff9900' }
-      ];
-
-      // Spawn golden glittering constellation points around each letter
-      const isMobile = W < 600;
-      const count = isMobile ? 320 : 500;
-      for (let i = 0; i < count; i++) {
-        this.particles.push({
-          x: burstX,
-          y: burstY,
-          targetAngle: Math.random() * Math.PI * 2,
-          dist: Math.random() * Math.min(W * 0.42, 380),
-          speed: Math.random() * 0.05 + 0.03,
-          t: 0,
-          color: Math.random() > 0.35 ? '#ffd700' : '#ffffff',
-          size: Math.random() * 2.2 + 1.2,
-          twinkle: Math.random() * 10
-        });
-      }
-    }
-
-    clear() {
-      this.active = false;
-      this.particles = [];
-    }
-
-    draw(now) {
-      if (!this.active) return;
-      this.glowPhase += 0.04;
-
-      const elapsed = (now - this.burstTime) * 0.001;
-      const revealProgress = Math.min(1.0, elapsed * 1.6);
-
-      // Elegant Dark Vignette behind text to prevent fireworks washing it out
-      const boxW = Math.min(W * 0.94, 960);
-      const boxH = Math.min(H * 0.38, 280);
-      const boxX = (W - boxW) / 2;
-      const boxY = H * 0.26 - (boxH / 2);
-
-      ctx.save();
-      const backGlow = ctx.createRadialGradient(W / 2, H * 0.26, 10, W / 2, H * 0.26, boxW * 0.6);
-      backGlow.addColorStop(0, 'rgba(10, 2, 20, 0.85)');
-      backGlow.addColorStop(0.6, 'rgba(8, 2, 16, 0.7)');
-      backGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      ctx.fillStyle = backGlow;
-      ctx.beginPath();
-      ctx.ellipse(W / 2, H * 0.26, boxW * 0.55, boxH * 0.6, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-
-      // Dynamic Font Scaling for ANY name length (Short or Long)
-      const isMobile = W < 600;
-      const nameLen = Math.max(1, this.lines[1].text.length);
-
-      // Scale line 2 font size so it NEVER wraps or cramps
-      const maxLine2W = Math.min(W * 0.86, 900);
-      const charWidthEst = isMobile ? 18 : 34;
-      const targetSize = Math.floor(Math.min(
-        isMobile ? 54 : 84,
-        maxLine2W / (nameLen * 0.62)
-      ));
-
-      const line1Size = Math.floor(Math.min(isMobile ? 26 : 42, targetSize * 0.65));
-      const line2Size = Math.max(isMobile ? 24 : 36, targetSize);
-
-      ctx.save();
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-
-      const line1Y = H * 0.20;
-      const line2Y = H * 0.32;
-
-      // LINE 1: ✨ HAPPY DIWALI ✨
-      ctx.font = `900 ${line1Size}px 'Cinzel', serif`;
-
-      // Multi-layer Glowing Shadow
-      ctx.shadowColor = 'rgba(255, 180, 0, 0.85)';
-      ctx.shadowBlur = 28;
-      ctx.strokeStyle = '#ff9900';
-      ctx.lineWidth = 4;
-      ctx.strokeText(this.lines[0].text, W / 2, line1Y);
-
-      // Crisp White-Gold Core Fill
-      const grad1 = ctx.createLinearGradient(0, line1Y - line1Size / 2, 0, line1Y + line1Size / 2);
-      grad1.addColorStop(0, '#ffffff');
-      grad1.addColorStop(0.4, '#fff5b8');
-      grad1.addColorStop(1, '#ffd700');
-      ctx.fillStyle = grad1;
-      ctx.fillText(this.lines[0].text, W / 2, line1Y);
-
-      // LINE 2: USER'S NAME (Ultra-Crisp, Bold, High-Contrast Sparkling)
-      ctx.font = `900 ${line2Size}px 'Cinzel', serif`;
-
-      // 1. Deep outer fiery aura
-      ctx.shadowColor = 'rgba(255, 100, 0, 0.9)';
-      ctx.shadowBlur = 36;
-      ctx.strokeStyle = '#ff3300';
-      ctx.lineWidth = Math.max(3, line2Size * 0.08);
-      ctx.strokeText(this.lines[1].text, W / 2, line2Y);
-
-      // 2. Bright gold intermediate stroke
-      ctx.shadowColor = 'rgba(255, 215, 0, 0.95)';
-      ctx.shadowBlur = 20;
-      ctx.strokeStyle = '#ffd700';
-      ctx.lineWidth = Math.max(1.5, line2Size * 0.04);
-      ctx.strokeText(this.lines[1].text, W / 2, line2Y);
-
-      // 3. Ultra-Sharp Diamond White-Hot Core Fill
-      const grad2 = ctx.createLinearGradient(0, line2Y - line2Size / 2, 0, line2Y + line2Size / 2);
-      grad2.addColorStop(0, '#ffffff');
-      grad2.addColorStop(0.3, '#fffbe6');
-      grad2.addColorStop(0.7, '#ffd700');
-      grad2.addColorStop(1, '#ff9900');
-      ctx.fillStyle = grad2;
-      ctx.fillText(this.lines[1].text, W / 2, line2Y);
-
-      ctx.restore();
-
-      // Sparkling Diamond Glints dancing over letters
-      ctx.save();
-      ctx.globalCompositeOperation = 'lighter';
-      for (let i = 0; i < this.particles.length; i++) {
-        const p = this.particles[i];
-        p.twinkle += 0.25;
-        p.t += (1.0 - p.t) * p.speed;
-
-        const curX = W / 2 + Math.cos(p.targetAngle) * (p.dist * p.t);
-        const curY = (p.targetAngle > Math.PI ? line1Y : line2Y) + Math.sin(p.targetAngle) * (24 * p.t);
-
-        const shine = 0.5 + 0.5 * Math.sin(p.twinkle);
-        if (shine > 0.4) {
-          ctx.fillStyle = p.color;
-          ctx.globalAlpha = shine;
-          ctx.beginPath();
-          ctx.arc(curX, curY, p.size * shine, 0, Math.PI * 2);
-          ctx.fill();
-
-          // Glint Spike
-          if (shine > 0.75) {
-            ctx.strokeStyle = '#ffffff';
-            ctx.lineWidth = 0.8;
-            const spike = p.size * 3.5;
-            ctx.beginPath();
-            ctx.moveTo(curX - spike, curY);
-            ctx.lineTo(curX + spike, curY);
-            ctx.moveTo(curX, curY - spike);
-            ctx.lineTo(curX, curY + spike);
-            ctx.stroke();
-          }
-        }
-      }
-      ctx.restore();
-    }
-  }
-
-  const sparklerText = new ClearSparklerText();
-
-
-  /* ==========================================================================
-     7. ULTRA-REALISTIC FIREWORK BURSTS
-     Peony, Willow, Chrysanthemum, Multi-break Rings
-     ========================================================================== */
   class FireworkBurstParticle {
     constructor(x, y, vx, vy, color, type = 'chrysanthemum') {
       this.x = x;
@@ -1189,34 +1141,7 @@
     }
   }
 
-  class Shockwave {
-    constructor(x, y, maxR) {
-      this.x = x;
-      this.y = y;
-      this.r = 2;
-      this.maxR = maxR;
-      this.alpha = 1.0;
-    }
-    update() {
-      this.r += (this.maxR - this.r) * 0.18 + 2;
-      this.alpha -= 0.038;
-    }
-    draw() {
-      if (this.alpha <= 0) return;
-      ctx.save();
-      ctx.globalCompositeOperation = 'lighter';
-      ctx.strokeStyle = 'rgba(255, 230, 180, 0.8)';
-      ctx.globalAlpha = Math.max(0, this.alpha);
-      ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.restore();
-    }
-  }
-
   let bursts = [];
-  let shockwaves = [];
   let screenFlash = 0;
 
   function createRealisticExplosion(x, y, palette, count = 160, type = 'chrysanthemum') {
@@ -1224,7 +1149,6 @@
     sound.playCrackle();
 
     screenFlash = 0.55;
-    shockwaves.push(new Shockwave(x, y, Math.min(W, H) * 0.35));
 
     const colors = palette || ['#ffd700', '#ff9900', '#ffffff', '#ff3300', '#00eeff'];
     for (let i = 0; i < count; i++) {
@@ -1243,10 +1167,10 @@
 
 
   /* ==========================================================================
-     8. CONTINUOUS CELEBRATION ORCHESTRATION
+     7. SKY SHOT LAUNCH & CELEBRATION CONTROLLER
      ========================================================================== */
   let activeRockets = [];
-  let ambientRocketsInterval = null;
+  let ambientInterval = null;
   let isCelebrating = false;
 
   const heroLayer = document.getElementById('heroLayer');
@@ -1255,7 +1179,7 @@
   const relaunchBtn = document.getElementById('relaunchBtn');
   const celebrateBar = document.getElementById('celebrateBar');
 
-  // Launch random decorative rockets in all directions even on landing page
+  // Multi-directional decorative rockets on landing page
   setInterval(() => {
     if (activeRockets.length < 3) {
       const startX = Math.random() * W;
@@ -1285,10 +1209,8 @@
     heroLayer.classList.add('vanished');
     isCelebrating = true;
 
-    // Rocket sound
     sound.playRocketLaunch(1.8);
 
-    // Main ceremonial rocket
     const startX = W / 2;
     const startY = H - 20;
     const targetX = W / 2;
@@ -1298,15 +1220,15 @@
       // 1. Massive Primary Fireworks Blast
       createRealisticExplosion(detonateX, detonateY, ['#ffffff', '#ffd700', '#ff9900', '#ff2200'], 260, 'willow');
 
-      // 2. Crystal-Clear Glowing Typography
-      sparklerText.trigger(name, detonateX, detonateY);
+      // 2. Pure Sky Sparkler Writing (No round thing! Living fire!)
+      skyWriting.trigger(name);
 
-      // 3. Multi-directional criss-crossing secondary rockets
+      // 3. Multi-angle celebratory shells around the writing
       const sideRockets = [
-        [W * 0.15, H, W * 0.25, H * 0.22, ['#00eeff', '#ffffff', '#0088ff']],
-        [W * 0.85, H, W * 0.75, H * 0.22, ['#ff0055', '#ff99aa', '#ffffff']],
-        [W * 0.05, H, W * 0.35, H * 0.16, ['#ffd700', '#ffaa00']],
-        [W * 0.95, H, W * 0.65, H * 0.16, ['#00ff88', '#ffffff', '#22ffcc']]
+        [W * 0.15, H, W * 0.25, H * 0.18, ['#00eeff', '#ffffff', '#0088ff']],
+        [W * 0.85, H, W * 0.75, H * 0.18, ['#ff0055', '#ff99aa', '#ffffff']],
+        [W * 0.05, H, W * 0.35, H * 0.14, ['#ffd700', '#ffaa00']],
+        [W * 0.95, H, W * 0.65, H * 0.14, ['#00ff88', '#ffffff', '#22ffcc']]
       ];
 
       sideRockets.forEach(([sx, sy, tx, ty, pal], idx) => {
@@ -1318,12 +1240,10 @@
         }, 600 + idx * 400);
       });
 
-      // Show Celebrate Bar
       setTimeout(() => {
         celebrateBar.classList.add('active');
       }, 2400);
 
-      // Continuous ambient fireworks
       startContinuousFireworks();
     });
 
@@ -1337,17 +1257,17 @@
 
   relaunchBtn.addEventListener('click', () => {
     celebrateBar.classList.remove('active');
-    sparklerText.clear();
+    skyWriting.clear();
     heroLayer.classList.remove('vanished');
     isCelebrating = false;
-    clearInterval(ambientRocketsInterval);
+    clearInterval(ambientInterval);
     nameField.value = '';
     nameField.focus();
   });
 
   function startContinuousFireworks() {
-    clearInterval(ambientRocketsInterval);
-    ambientRocketsInterval = setInterval(() => {
+    clearInterval(ambientInterval);
+    ambientInterval = setInterval(() => {
       if (!isCelebrating) return;
       const startX = Math.random() * W;
       const targetX = startX + (Math.random() - 0.5) * W * 0.4;
@@ -1361,7 +1281,7 @@
     }, 2400);
   }
 
-  // Interactive: Click or Drag anywhere to launch custom fireworks & sparklers
+  // Interactive Click / Drag to draw sparkler & fireworks in sky
   let isPointerDown = false;
 
   canvas.addEventListener('pointerdown', (e) => {
@@ -1401,10 +1321,10 @@
 
 
   /* ==========================================================================
-     9. MASTER RENDERING LOOP
+     8. MASTER RENDERING LOOP
      ========================================================================== */
   function render(now) {
-    ctx.fillStyle = 'rgba(1, 0, 5, 0.22)';
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.22)';
     ctx.fillRect(0, 0, W, H);
 
     if (screenFlash > 0.01) {
@@ -1419,14 +1339,7 @@
     // 1. Stars
     sky.draw(now * 0.001);
 
-    // 2. Shockwaves
-    shockwaves = shockwaves.filter(sw => sw.alpha > 0.01);
-    for (let i = 0; i < shockwaves.length; i++) {
-      shockwaves[i].update();
-      shockwaves[i].draw();
-    }
-
-    // 3. Smoke
+    // 2. Smoke
     smokePuffs = smokePuffs.filter(s => s.alpha > 0.01);
     for (let i = 0; i < smokePuffs.length; i++) {
       const s = smokePuffs[i];
@@ -1446,21 +1359,21 @@
       ctx.restore();
     }
 
-    // 4. Directional Rockets
+    // 3. Rockets
     activeRockets = activeRockets.filter(r => !r.dead);
     for (let i = 0; i < activeRockets.length; i++) {
       activeRockets[i].update();
       activeRockets[i].draw();
     }
 
-    // 5. Firework Bursts
+    // 4. Firework Bursts
     bursts = bursts.filter(b => b.alpha > 0.01);
     for (let i = 0; i < bursts.length; i++) {
       bursts[i].update();
       bursts[i].draw();
     }
 
-    // 6. Sparks
+    // 5. Sparks & Falling Embers
     sparks = sparks.filter(sp => sp.alpha > 0.01);
     for (let i = 0; i < sparks.length; i++) {
       const sp = sparks[i];
@@ -1481,10 +1394,10 @@
       ctx.restore();
     }
 
-    // 7. Clear Sparkler Typography
-    sparklerText.draw(now);
+    // 6. Real Living Sky Sparkler Writing (NO round thing! Real burning fire!)
+    skyWriting.updateAndDraw(now);
 
-    // 8. Ground Crackers: Anars (Flower Pots) & Chakras (Spinning Wheels)
+    // 7. Ground Crackers (Anars & Chakras)
     for (let i = 0; i < anars.length; i++) {
       anars[i].update();
       anars[i].draw();
@@ -1494,9 +1407,9 @@
       chakras[i].draw();
     }
 
-    // 9. Traditional Realistic Diyas
+    // 8. Traditional Clay Diyas
     for (let i = 0; i < diyas.length; i++) {
-      diyas[i].draw(now * 0.001);
+      diyas[i].draw();
     }
 
     requestAnimationFrame(render);
