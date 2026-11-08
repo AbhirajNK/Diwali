@@ -7,7 +7,7 @@
   <meta name="description" content="Realistic Sky Firework Name Writing and Diwali Crackers.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@800;900&family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       margin: 0;
@@ -19,7 +19,7 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background: #010004;
+      background: #000002;
       font-family: 'Montserrat', sans-serif;
       color: #fff;
       user-select: none;
@@ -87,7 +87,7 @@
       max-width: 520px;
       width: 90%;
       padding: 44px 32px;
-      background: radial-gradient(circle at 50% 0%, rgba(45, 15, 65, 0.6) 0%, rgba(8, 2, 14, 0.92) 100%);
+      background: radial-gradient(circle at 50% 0%, rgba(45, 15, 65, 0.65) 0%, rgba(8, 2, 14, 0.92) 100%);
       border: 1px solid rgba(255, 215, 130, 0.38);
       border-radius: 28px;
       backdrop-filter: blur(24px);
@@ -249,7 +249,7 @@
     .hint-label {
       font-size: 12px;
       letter-spacing: 2px;
-      color: rgba(255, 220, 160, 0.8);
+      color: rgba(255, 220, 160, 0.85);
       text-transform: uppercase;
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
     }
@@ -321,18 +321,18 @@
       return this.enabled;
     }
 
-    playRocketLaunch(duration = 1.2) {
+    playRocketLaunch(duration = 1.1) {
       if (!this.enabled || !this.ctx) return;
       const now = this.ctx.currentTime;
 
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(320, now);
-      osc.frequency.exponentialRampToValueAtTime(1700, now + duration * 0.95);
+      osc.frequency.setValueAtTime(340, now);
+      osc.frequency.exponentialRampToValueAtTime(1750, now + duration * 0.95);
 
       gain.gain.setValueAtTime(0.001, now);
-      gain.gain.linearRampToValueAtTime(0.13, now + duration * 0.35);
+      gain.gain.linearRampToValueAtTime(0.12, now + duration * 0.35);
       gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
 
       const filter = this.ctx.createBiquadFilter();
@@ -345,7 +345,7 @@
 
       osc.start(now);
       osc.stop(now + duration);
-      this.playHiss(duration, 0.14);
+      this.playHiss(duration, 0.13);
     }
 
     playHiss(duration, vol = 0.1) {
@@ -418,7 +418,7 @@
 
     playCrackle() {
       if (!this.enabled || !this.ctx) return;
-      const count = 5 + Math.floor(Math.random() * 6);
+      const count = 4 + Math.floor(Math.random() * 5);
       for (let i = 0; i < count; i++) {
         setTimeout(() => {
           if (!this.ctx || !this.enabled) return;
@@ -427,13 +427,13 @@
           const now = this.ctx.currentTime;
           osc.type = 'triangle';
           osc.frequency.setValueAtTime(1800 + Math.random() * 2600, now);
-          gain.gain.setValueAtTime(0.025, now);
-          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.035);
+          gain.gain.setValueAtTime(0.02, now);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.03);
           osc.connect(gain);
           gain.connect(this.ctx.destination);
           osc.start(now);
-          osc.stop(now + 0.035);
-        }, Math.random() * 240);
+          osc.stop(now + 0.03);
+        }, Math.random() * 220);
       }
     }
   }
@@ -453,7 +453,7 @@
 
 
   /* ==========================================================================
-     2. CANVAS SETUP & SCINTILLATING NIGHT SKY
+     2. CANVAS SETUP & ATMOSPHERIC NIGHT SKY
      ========================================================================== */
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d', { alpha: false });
@@ -473,7 +473,7 @@
     }
     init() {
       this.stars = [];
-      for (let i = 0; i < 260; i++) {
+      for (let i = 0; i < 280; i++) {
         this.stars.push({
           x: Math.random() * W,
           y: Math.random() * H * 0.85,
@@ -499,25 +499,24 @@
 
 
   /* ==========================================================================
-     3. CRYSTAL-CLEAR SPARKLER TYPOGRAPHY
+     3. AUTHENTIC SKY FIREWORK SPARKLER LIGHTS ENGINE
+     (Like Shutterstock "Sparkly Firework Writing Into Stock Footage Video" & Lancework!)
+     - Formed out of hundreds of bright, twinkling sparkler points
+     - Living fiery filament lines
+     - Sizzling embers dropping naturally
+     - 100% visible, sharp, beautiful, and authentic!
      ========================================================================== */
-  class ClearSparklerText {
+  class SkyFireworkLightLettering {
     constructor() {
       this.active = false;
-      this.lines = [];
+      this.burners = [];
       this.sparks = [];
-      this.sparkPoints = [];
     }
 
     trigger(name) {
       this.active = true;
+      this.burners = [];
       this.sparks = [];
-      this.sparkPoints = [];
-
-      this.lines = [
-        { text: '✨ HAPPY DIWALI ✨', color: '#ffd700' },
-        { text: name.toUpperCase(), color: '#ffffff' }
-      ];
 
       const offCanvas = document.createElement('canvas');
       const offCtx = offCanvas.getContext('2d');
@@ -527,38 +526,43 @@
       const isMobile = W < 600;
       const nameLen = Math.max(1, name.length);
 
-      const maxTextW = Math.min(W * 0.86, 900);
+      const maxTextW = Math.min(W * 0.88, 920);
       const targetSize = Math.floor(Math.min(
-        isMobile ? 48 : 78,
+        isMobile ? 50 : 80,
         maxTextW / (nameLen * 0.60)
       ));
 
-      const line1Size = Math.floor(Math.min(isMobile ? 24 : 38, targetSize * 0.65));
-      const line2Size = Math.max(isMobile ? 22 : 32, targetSize);
+      const line1Size = Math.floor(Math.min(isMobile ? 26 : 40, targetSize * 0.65));
+      const line2Size = Math.max(isMobile ? 24 : 34, targetSize);
 
       const line1Y = Math.floor(H * 0.24);
       const line2Y = Math.floor(H * 0.38);
 
+      // Render crisp reference typography offscreen
       offCtx.textAlign = 'center';
       offCtx.textBaseline = 'middle';
       offCtx.font = `900 ${line1Size}px 'Cinzel', serif`;
       offCtx.fillStyle = '#ffffff';
-      offCtx.fillText(this.lines[0].text, W / 2, line1Y);
+      offCtx.fillText('✨ HAPPY DIWALI ✨', W / 2, line1Y);
 
       offCtx.font = `900 ${line2Size}px 'Cinzel', serif`;
-      offCtx.fillText(this.lines[1].text, W / 2, line2Y);
+      offCtx.fillText(name.toUpperCase(), W / 2, line2Y);
 
       const imgData = offCtx.getImageData(0, 0, W, H).data;
-      const step = isMobile ? 22 : 16;
 
+      // Sample along letter strokes to attach sparkler lances (like wedding bamboo firework letter boards)
+      const step = isMobile ? 8 : 7;
       for (let y = 0; y < H; y += step) {
         for (let x = 0; x < W; x += step) {
           const idx = (y * W + x) * 4;
-          if (imgData[idx] > 180) {
-            this.sparkPoints.push({
-              x: x + (Math.random() - 0.5) * 4,
-              y: y + (Math.random() - 0.5) * 4,
-              twinkle: Math.random() * Math.PI * 2
+          if (imgData[idx] > 160) {
+            this.burners.push({
+              x: x + (Math.random() - 0.5) * 1.5,
+              y: y + (Math.random() - 0.5) * 1.5,
+              baseColor: y < (line1Y + line2Y) / 2 ? '#ffd700' : '#ffffff',
+              phase: Math.random() * Math.PI * 2,
+              speed: Math.random() * 0.3 + 0.15,
+              spikeLen: Math.random() * 4 + 4
             });
           }
         }
@@ -567,51 +571,36 @@
 
     clear() {
       this.active = false;
+      this.burners = [];
       this.sparks = [];
-      this.sparkPoints = [];
     }
 
     updateAndDraw(now) {
       if (!this.active) return;
 
-      const isMobile = W < 600;
-      const nameLen = Math.max(1, this.lines[1].text.length);
-
-      const maxTextW = Math.min(W * 0.86, 900);
-      const targetSize = Math.floor(Math.min(
-        isMobile ? 48 : 78,
-        maxTextW / (nameLen * 0.60)
-      ));
-
-      const line1Size = Math.floor(Math.min(isMobile ? 24 : 38, targetSize * 0.65));
-      const line2Size = Math.max(isMobile ? 22 : 32, targetSize);
-
-      const line1Y = Math.floor(H * 0.24);
-      const line2Y = Math.floor(H * 0.38);
-
-      // Emit delicate sparkler sparks
-      if (this.sparks.length < 140) {
+      // Emit delicate dripping embers from random burner nodes
+      if (this.sparks.length < 180) {
         for (let i = 0; i < 3; i++) {
-          if (this.sparkPoints.length === 0) break;
-          const pt = this.sparkPoints[Math.floor(Math.random() * this.sparkPoints.length)];
+          if (this.burners.length === 0) break;
+          const b = this.burners[Math.floor(Math.random() * this.burners.length)];
           const angle = Math.random() * Math.PI * 2;
-          const speed = Math.random() * 2.8 + 0.8;
+          const speed = Math.random() * 2.8 + 0.6;
           this.sparks.push({
-            x: pt.x,
-            y: pt.y,
+            x: b.x,
+            y: b.y,
             vx: Math.cos(angle) * speed,
             vy: Math.sin(angle) * speed + 0.4,
-            color: Math.random() > 0.35 ? '#ffd700' : '#ffffff',
-            size: Math.random() * 1.6 + 0.9,
+            color: Math.random() > 0.3 ? '#ffd700' : '#ffffff',
+            size: Math.random() * 1.6 + 0.8,
             alpha: 1.0,
-            decay: 0.025 + Math.random() * 0.02
+            decay: 0.024 + Math.random() * 0.02
           });
         }
       }
 
       if (Math.random() < 0.12) sound.playCrackle();
 
-      // 1. Draw Sparks (Lighter)
+      // 1. Draw Living Sparks & Falling Embers
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
       this.sparks = this.sparks.filter(s => s.alpha > 0.01);
@@ -621,7 +610,7 @@
         s.y += s.vy;
         s.vx *= 0.96;
         s.vy *= 0.96;
-        s.vy += 0.10;
+        s.vy += 0.10; // Gravity drip
         s.alpha -= s.decay;
 
         ctx.fillStyle = s.color;
@@ -630,74 +619,37 @@
         ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
         ctx.fill();
       }
-      ctx.restore();
 
-      // 2. Draw Vector Crisp Letters (Source-Over: 100% Readable!)
-      ctx.save();
-      ctx.globalCompositeOperation = 'source-over';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
+      // 2. Draw Twinkling Sparkler Light Nodes (The "Sky Name Cracker" Effect)
+      for (let i = 0; i < this.burners.length; i++) {
+        const b = this.burners[i];
+        b.phase += b.speed;
+        const shine = 0.5 + 0.5 * Math.sin(b.phase);
 
-      // Line 1: ✨ HAPPY DIWALI ✨
-      ctx.font = `900 ${line1Size}px 'Cinzel', serif`;
-      ctx.shadowColor = 'rgba(255, 170, 0, 0.9)';
-      ctx.shadowBlur = 20;
-      ctx.strokeStyle = '#ff9900';
-      ctx.lineWidth = 4;
-      ctx.strokeText(this.lines[0].text, W / 2, line1Y);
+        // Halo
+        ctx.fillStyle = b.baseColor;
+        ctx.globalAlpha = 0.65 + 0.35 * shine;
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, 2.2 + shine * 1.4, 0, Math.PI * 2);
+        ctx.fill();
 
-      const grad1 = ctx.createLinearGradient(0, line1Y - line1Size / 2, 0, line1Y + line1Size / 2);
-      grad1.addColorStop(0, '#ffffff');
-      grad1.addColorStop(0.3, '#fff4b8');
-      grad1.addColorStop(1, '#ffd700');
-      ctx.fillStyle = grad1;
-      ctx.fillText(this.lines[0].text, W / 2, line1Y);
+        // White-hot pinpoint light filament
+        ctx.fillStyle = '#ffffff';
+        ctx.globalAlpha = 0.8 + 0.2 * shine;
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, 1.2, 0, Math.PI * 2);
+        ctx.fill();
 
-      // Line 2: USER'S NAME
-      ctx.font = `900 ${line2Size}px 'Cinzel', serif`;
-      ctx.shadowColor = 'rgba(255, 90, 0, 0.95)';
-      ctx.shadowBlur = 28;
-      ctx.strokeStyle = '#ff4400';
-      ctx.lineWidth = Math.max(3, line2Size * 0.08);
-      ctx.strokeText(this.lines[1].text, W / 2, line2Y);
-
-      ctx.shadowColor = 'rgba(255, 215, 0, 0.95)';
-      ctx.shadowBlur = 16;
-      ctx.strokeStyle = '#ffd700';
-      ctx.lineWidth = Math.max(1.5, line2Size * 0.04);
-      ctx.strokeText(this.lines[1].text, W / 2, line2Y);
-
-      const grad2 = ctx.createLinearGradient(0, line2Y - line2Size / 2, 0, line2Y + line2Size / 2);
-      grad2.addColorStop(0, '#ffffff');
-      grad2.addColorStop(0.35, '#fffbe6');
-      grad2.addColorStop(0.7, '#ffd700');
-      grad2.addColorStop(1, '#ff9900');
-      ctx.fillStyle = grad2;
-      ctx.fillText(this.lines[1].text, W / 2, line2Y);
-
-      ctx.restore();
-
-      // 3. Diamond cross glints
-      ctx.save();
-      ctx.globalCompositeOperation = 'lighter';
-      for (let i = 0; i < this.sparkPoints.length; i++) {
-        const pt = this.sparkPoints[i];
-        pt.twinkle += 0.2;
-        const shine = 0.5 + 0.5 * Math.sin(pt.twinkle);
+        // Diamond cross sparkles on glistening nodes
         if (shine > 0.82) {
-          ctx.fillStyle = '#ffffff';
-          ctx.globalAlpha = (shine - 0.82) * 4;
-          ctx.beginPath();
-          ctx.arc(pt.x, pt.y, 2.0, 0, Math.PI * 2);
-          ctx.fill();
-
           ctx.strokeStyle = '#ffffff';
-          ctx.lineWidth = 1;
+          ctx.lineWidth = 0.9;
+          ctx.globalAlpha = (shine - 0.82) * 3.5;
           ctx.beginPath();
-          ctx.moveTo(pt.x - 5, pt.y);
-          ctx.lineTo(pt.x + 5, pt.y);
-          ctx.moveTo(pt.x, pt.y - 5);
-          ctx.lineTo(pt.x, pt.y + 5);
+          ctx.moveTo(b.x - b.spikeLen, b.y);
+          ctx.lineTo(b.x + b.spikeLen, b.y);
+          ctx.moveTo(b.x, b.y - b.spikeLen);
+          ctx.lineTo(b.x, b.y + b.spikeLen);
           ctx.stroke();
         }
       }
@@ -705,7 +657,7 @@
     }
   }
 
-  const sparklerText = new ClearSparklerText();
+  const skyWriting = new SkyFireworkLightLettering();
 
 
   /* ==========================================================================
@@ -1024,7 +976,6 @@
       const dy = targetY - startY;
       const dist = Math.hypot(dx, dy);
 
-      // Fast, snappy ascent speed
       this.vx = (dx / dist) * (18 + Math.random() * 5) * speedMultiplier;
       this.vy = (dy / dist) * (24 + Math.random() * 6) * speedMultiplier;
       this.thrust = 0.38 * speedMultiplier;
@@ -1154,14 +1105,14 @@
 
   let bursts = [];
 
-  function createRealisticExplosion(x, y, palette, count = 150, type = 'chrysanthemum') {
+  function createRealisticExplosion(x, y, palette, count = 160, type = 'chrysanthemum') {
     sound.playExplosion(1.0);
     sound.playCrackle();
 
     const colors = palette || ['#ffd700', '#ff9900', '#ffffff', '#ff3300', '#00eeff'];
     for (let i = 0; i < count; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const speed = (Math.random() * 0.85 + 0.15) * (type === 'willow' ? 14 : 16);
+      const speed = (Math.random() * 0.85 + 0.15) * (type === 'willow' ? 15 : 17);
       const vx = Math.cos(angle) * speed;
       const vy = Math.sin(angle) * speed;
       const col = colors[Math.floor(Math.random() * colors.length)];
@@ -1176,7 +1127,7 @@
 
   /* ==========================================================================
      7. RAPID MULTI-ROCKETS ON LANDING PAGE
-     CELEBRATION PAGE: FAST MAIN ROCKET + SURROUNDING SKY FIREWORKS!
+     CELEBRATION PAGE: GRAND CONTINUOUS SKY FIREWORKS SHOW!
      ========================================================================== */
   let activeRockets = [];
   let isCelebrating = false;
@@ -1188,7 +1139,7 @@
   const relaunchBtn = document.getElementById('relaunchBtn');
   const celebrateBar = document.getElementById('celebrateBar');
 
-  // Launch function for random rockets
+  // Landing page rapid rockets
   function launchRandomLandingRocket() {
     if (!isCelebrating && activeRockets.length < 4) {
       const startX = Math.random() * W;
@@ -1203,14 +1154,13 @@
           ['#00ff77', '#ffffff', '#22ffcc']
         ][Math.floor(Math.random() * 4)];
         createRealisticExplosion(ex, ey, pal, 110, Math.random() > 0.5 ? 'willow' : 'chrysanthemum');
-      }, 1.25)); // Snappy speed!
+      }, 1.25));
     }
   }
 
-  // Fast launches on landing page: launch immediately + every 1400ms!
   setTimeout(launchRandomLandingRocket, 300);
-  setTimeout(launchRandomLandingRocket, 900);
-  setInterval(launchRandomLandingRocket, 1400);
+  setTimeout(launchRandomLandingRocket, 800);
+  setInterval(launchRandomLandingRocket, 1300);
 
   function startCelebration() {
     const name = nameField.value.trim();
@@ -1225,64 +1175,70 @@
 
     sound.init();
 
-    // Clear landing page rockets
+    // Clear landing rockets
     activeRockets = [];
     bursts = [];
 
     heroLayer.classList.add('vanished');
     isCelebrating = true;
 
-    // Fast, crisp launch sound
     sound.playRocketLaunch(1.0);
 
-    // Fast Ceremonial Rocket directly to upper center
+    // Ceremonial Sky Shot Rocket
     const startX = W / 2;
     const startY = H - 20;
     const targetX = W / 2;
     const targetY = H * 0.28;
 
     const mainRocket = new DirectionalRocket(startX, startY, targetX, targetY, (detonateX, detonateY) => {
-      // Primary burst
-      createRealisticExplosion(detonateX, detonateY, ['#ffffff', '#ffd700', '#ff9900', '#ff2200'], 260, 'willow');
+      // Primary grand burst
+      createRealisticExplosion(detonateX, detonateY, ['#ffffff', '#ffd700', '#ff9900', '#ff2200'], 280, 'willow');
 
-      // Sparkler name reveal
-      sparklerText.trigger(name);
+      // Light up the name in the heavens in burning firework sparkler calligraphy!
+      skyWriting.trigger(name);
 
-      // Start continuous sky fireworks around the name!
+      // Start the grand continuous fireworks show!
       startCelebrationSkyFireworks();
 
       setTimeout(() => {
         celebrateBar.classList.add('active');
       }, 2000);
-    }, 1.35); // Fast flight speed!
+    }, 1.35);
 
     activeRockets.push(mainRocket);
   }
 
-  // Continuous festive fireworks bursting in the background around the name
+  // CONTINUOUS GRAND FIREWORKS SHOW IN THE SKY
   function startCelebrationSkyFireworks() {
     clearInterval(celebrationSkyInterval);
     celebrationSkyInterval = setInterval(() => {
       if (!isCelebrating) return;
 
-      // Position fireworks on the upper sides and top so they never cover the name
-      const side = Math.random() < 0.5 ? 'left' : 'right';
-      const x = side === 'left'
-        ? (W * 0.08 + Math.random() * W * 0.18)
-        : (W * 0.74 + Math.random() * W * 0.18);
-      const y = H * 0.08 + Math.random() * H * 0.22;
+      // Burst multiple colorful fireworks in the sky around the writing
+      const positions = [
+        { x: W * (0.06 + Math.random() * 0.22), y: H * (0.06 + Math.random() * 0.22) },
+        { x: W * (0.72 + Math.random() * 0.22), y: H * (0.06 + Math.random() * 0.22) },
+        { x: W * (0.35 + Math.random() * 0.30), y: H * (0.04 + Math.random() * 0.12) }
+      ];
 
-      const pal = [
-        ['#ffd700', '#ffaa00', '#ffffff'],
-        ['#00e5ff', '#ffffff', '#0077ff'],
-        ['#ff0077', '#ff88bb', '#ffffff'],
-        ['#00ff88', '#ffffff', '#22ffcc'],
-        ['#ff3300', '#ffd700', '#ff8800']
-      ][Math.floor(Math.random() * 5)];
+      const target = positions[Math.floor(Math.random() * positions.length)];
+      const startX = target.x + (Math.random() - 0.5) * 80;
 
-      const type = Math.random() > 0.4 ? 'willow' : 'chrysanthemum';
-      createRealisticExplosion(x, y, pal, 120, type);
-    }, 1800);
+      sound.playRocketLaunch(0.9);
+      activeRockets.push(new DirectionalRocket(startX, H, target.x, target.y, (ex, ey) => {
+        const pal = [
+          ['#ffd700', '#ffaa00', '#ffffff'],
+          ['#00e5ff', '#ffffff', '#0077ff'],
+          ['#ff0077', '#ff88bb', '#ffffff'],
+          ['#00ff88', '#ffffff', '#22ffcc'],
+          ['#ff3300', '#ffd700', '#ff8800'],
+          ['#d400ff', '#ffffff', '#8800ff']
+        ][Math.floor(Math.random() * 6)];
+
+        const type = Math.random() > 0.45 ? 'willow' : 'chrysanthemum';
+        createRealisticExplosion(ex, ey, pal, 140, type);
+      }, 1.3));
+    }, 1200); // Launches a continuous sky rocket every 1.2 seconds!
   }
 
   igniteBtn.addEventListener('click', startCelebration);
@@ -1293,7 +1249,7 @@
   relaunchBtn.addEventListener('click', () => {
     celebrateBar.classList.remove('active');
     clearInterval(celebrationSkyInterval);
-    sparklerText.clear();
+    skyWriting.clear();
     activeRockets = [];
     bursts = [];
     heroLayer.classList.remove('vanished');
@@ -1346,7 +1302,7 @@
      ========================================================================== */
   function render(now) {
     ctx.globalCompositeOperation = 'source-over';
-    ctx.fillStyle = 'rgba(1, 0, 4, 0.26)';
+    ctx.fillStyle = 'rgba(0, 0, 2, 0.26)';
     ctx.fillRect(0, 0, W, H);
 
     // 1. Stars
@@ -1407,7 +1363,10 @@
       ctx.restore();
     }
 
-    // 6. Ground Crackers (Anars & Chakras)
+    // 6. Real Sky Firework Sparkler Light Calligraphy (Lancework)
+    skyWriting.updateAndDraw(now);
+
+    // 7. Ground Crackers (Anars & Chakras)
     for (let i = 0; i < anars.length; i++) {
       anars[i].update();
       anars[i].draw();
@@ -1417,13 +1376,10 @@
       chakras[i].draw();
     }
 
-    // 7. Traditional Clay Diyas
+    // 8. Traditional Clay Diyas
     for (let i = 0; i < diyas.length; i++) {
       diyas[i].draw();
     }
-
-    // 8. Crystal-Clear Sparkler Text
-    sparklerText.updateAndDraw(now);
 
     requestAnimationFrame(render);
   }
